@@ -7,7 +7,7 @@ class Hamming
   def self.compute(strand1, strand2)
     
     # Argument error for unequal strand lengths
-    raise ArgumentError, 'Unequal strand lengths.' if strand1.length != strand2.length
+    raise ArgumentError, "Unequal strand lengths." if strand1.length != strand2.length
     
     # Create String Mask object from argument DNA strings. 
     dna1 = String::Mask.new(strand1, '.')
@@ -16,9 +16,9 @@ class Hamming
     # For Subtraction, where the characters are the same, the result is empty, where they 
     # differ the result reflects the last string.
     result = dna1 - dna2
-    
+
     # Regex for counting characters, one or more uppercase letters. Result Mask object
-    # has white space charcaters denoted by '.' 
+    # has white space charcaters denoted by '.' for visualization.
     regexp = Regexp.new(/[A-Z]+/)
     
     # Result Mask object to string, split each character, join array indexes to string and 
@@ -35,7 +35,3 @@ module BookKeeping
   # Where the version number matches the one in the test.
   VERSION = 3
 end
-
-
-puts Hamming.compute("GAGCCTACTAACGGGAT", "CATCGTAATGACGGCCT")
-puts Hamming.compute("", "")
