@@ -1,7 +1,8 @@
-#GIGASECOND = 10**9
-GIGASECOND = 1_000_000_000
-
 class Gigasecond
+  
+  #GIGASECOND = 10**9
+  GIGASECOND = 1_000_000_000
+  
   # argument input format: (Time.utc(2015, 1, 24, 22, 0, 0))
   def self.from(birth_date)
     birth_date + GIGASECOND
