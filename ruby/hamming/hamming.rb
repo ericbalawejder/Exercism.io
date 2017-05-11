@@ -27,7 +27,6 @@ class Hamming
     
     # Hamming distance of two DNA strands
     hamming_distance = character_count.length
-    return hamming_distance
   end
 end
 
