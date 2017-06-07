@@ -1,32 +1,10 @@
-# https://github.com/rubyworks/strmask
-# Mask provides a string utility to manipulate strings 
-# in logicomathematical manner, ie. add, subtract, xor, etc.
-require 'strmask'
-
 class Hamming
   def self.compute(strand1, strand2)
+    raise ArgumentError, "StrandLengthError." unless strand1.length == strand2.length
     
-    # Argument error for unequal strand lengths
-    raise ArgumentError, "Unequal strand lengths." if strand1.length != strand2.length
-    
-    # Create String Mask object from argument DNA strings. 
-    dna1 = String::Mask.new(strand1, '.')
-    dna2 = String::Mask.new(strand2, '.')
-    
-    # For Subtraction, where the characters are the same, the result is empty, where they 
-    # differ the result reflects the last string.
-    result = dna1 - dna2
-
-    # Regex for counting characters, one or more uppercase letters. Result Mask object
-    # has white space charcaters denoted by '.' for visualization.
-    regexp = Regexp.new(/[A-Z]+/)
-    
-    # Result Mask object to string, split each character, join array indexes to string and 
-    # scan for all regex matches. This takes "CCC" and yields "C" "C" "C"
-    character_count = result.to_s.split("").join(" ").scan(regexp)
-    
-    # Hamming distance of two DNA strands
-    hamming_distance = character_count.length
+    # string to char array for zip
+    strand1, strand2 = strand1.chars, strand2.chars 
+    strand1.zip(strand2).count{|nucleotide1, nucleotide2| nucleotide1 != nucleotide2}
   end
 end
 
@@ -34,3 +12,4 @@ module BookKeeping
   # Where the version number matches the one in the test.
   VERSION = 3
 end
+
