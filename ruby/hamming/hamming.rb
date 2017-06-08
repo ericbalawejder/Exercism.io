@@ -1,6 +1,6 @@
 class Hamming
   def self.compute(strand1, strand2)
-    raise ArgumentError, "StrandLengthError." unless strand1.length == strand2.length
+    raise ArgumentError, "Strand lengths are unequal." unless strand1.length == strand2.length
     
     # string to char array for zip
     strand1, strand2 = strand1.chars, strand2.chars 
