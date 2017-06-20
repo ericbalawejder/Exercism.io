@@ -5,7 +5,7 @@ class Complement
                   'T' => 'A',
                   'A' => 'U' }.freeze
   # will not work
-  # COMPLEMENTS.default = "*"
+  # COMPLEMENTS.default = '*'
 
   def self.of_dna(strand)
     # COMPLEMENTS.fetch(nucleotide, "default_value for nil key")
