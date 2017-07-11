@@ -4,13 +4,10 @@ class Complement
                   'C' => 'G',
                   'T' => 'A',
                   'A' => 'U' }.freeze
-  # will not work
-  # COMPLEMENTS.default = '*'
 
   def self.of_dna(strand)
     # COMPLEMENTS.fetch(nucleotide, "default_value for nil key")
     rna = strand.chars.map { |nucleotide| COMPLEMENTS.fetch(nucleotide, '*') }.join
-    # if rna contains the default value, make rna the empty string
     rna = '' if rna.include?('*')
     rna
   end
