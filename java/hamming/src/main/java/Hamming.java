@@ -26,10 +26,4 @@ public class Hamming
         }
         return distance;
     }
-    public static void main(String[] args)
-    {
-        System.out.println("Deez Nuts");
-        Hamming hamming = new Hamming("ACT", "GAT");
-        System.out.println(hamming.getHammingDistance());
-    }
 }
