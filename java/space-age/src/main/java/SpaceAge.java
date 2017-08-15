@@ -16,41 +16,41 @@ class SpaceAge
 
     double onEarth()
     {
-        return seconds / secondsInEarthYear;
+        return getSeconds() / secondsInEarthYear;
     }
     
     double onMercury()
     {
-        return seconds / (secondsInEarthYear * 0.2408467);
+        return onEarth() / 0.2408467;
     }
 
     double onVenus()
     {
-        return seconds / (secondsInEarthYear * 0.61519726);
+        return onEarth() / 0.61519726;
     }
 
     double onMars()
     {
-        return seconds / (secondsInEarthYear * 1.8808158);
+        return onEarth() / 1.8808158;
     }
 
     double onJupiter()
     {
-        return seconds / (secondsInEarthYear * 11.862615);
+        return onEarth() / 11.862615;
     }
 
     double onSaturn()
     {
-        return seconds / (secondsInEarthYear * 29.447498);
+        return onEarth() / 29.447498;
     }
 
     double onUranus()
     {
-        return seconds / (secondsInEarthYear * 84.016846);
+        return onEarth() / 84.016846;
     }
 
     double onNeptune()
     {
-        return seconds / (secondsInEarthYear * 164.79132);
+        return onEarth() / 164.79132;
     }
 }
