@@ -3,24 +3,20 @@ class RaindropConverter
 {
     String convert(int number)
     {
-        String rainDrop = "";
+        StringBuilder rainDrop = new StringBuilder();
         
         if (number % 3 == 0)
         {
-            rainDrop += "Pling";
+            rainDrop.append("Pling");
         }
         if (number % 5 == 0)
         {
-            rainDrop += "Plang";
+            rainDrop.append("Plang");
         }
         if (number % 7 == 0)
         {
-            rainDrop += "Plong";
+            rainDrop.append("Plong");
         }
-        if (rainDrop.equals(""))
-        {
-            rainDrop = String.valueOf(number);
-        }
-        return rainDrop;
+        return rainDrop.toString().length() == 0 ? Integer.toString(number) : rainDrop.toString();
     }
 }

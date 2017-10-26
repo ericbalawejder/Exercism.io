@@ -1,0 +1,61 @@
+Compiled from "RaindropConverter.java"
+class RaindropConverter {
+  RaindropConverter();
+    Code:
+       0: aload_0
+       1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+       4: return
+
+  java.lang.String convert(int);
+    Code:
+       0: ldc           #2                  // String
+       2: astore_2
+       3: iload_1
+       4: iconst_3
+       5: irem
+       6: ifne          29
+       9: new           #3                  // class java/lang/StringBuilder
+      12: dup
+      13: invokespecial #4                  // Method java/lang/StringBuilder."<init>":()V
+      16: aload_2
+      17: invokevirtual #5                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      20: ldc           #6                  // String Pling
+      22: invokevirtual #5                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      25: invokevirtual #7                  // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      28: astore_2
+      29: iload_1
+      30: iconst_5
+      31: irem
+      32: ifne          55
+      35: new           #3                  // class java/lang/StringBuilder
+      38: dup
+      39: invokespecial #4                  // Method java/lang/StringBuilder."<init>":()V
+      42: aload_2
+      43: invokevirtual #5                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      46: ldc           #8                  // String Plang
+      48: invokevirtual #5                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      51: invokevirtual #7                  // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      54: astore_2
+      55: iload_1
+      56: bipush        7
+      58: irem
+      59: ifne          82
+      62: new           #3                  // class java/lang/StringBuilder
+      65: dup
+      66: invokespecial #4                  // Method java/lang/StringBuilder."<init>":()V
+      69: aload_2
+      70: invokevirtual #5                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      73: ldc           #9                  // String Plong
+      75: invokevirtual #5                  // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+      78: invokevirtual #7                  // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+      81: astore_2
+      82: aload_2
+      83: ldc           #2                  // String
+      85: invokevirtual #10                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+      88: ifeq          96
+      91: iload_1
+      92: invokestatic  #11                 // Method java/lang/String.valueOf:(I)Ljava/lang/String;
+      95: astore_2
+      96: aload_2
+      97: areturn
+}
