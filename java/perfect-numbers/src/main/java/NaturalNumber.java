@@ -2,13 +2,6 @@
 // Nicomachus' (60 - 120 CE) classification scheme for natural numbers.
 class NaturalNumber
 {
-    public static void main(String[] args)
-    {
-        //System.out.println(classify(24));
-        NaturalNumber number = new NaturalNumber(24);
-        System.out.println(number.getClassification());
-    }
-    
     private final int naturalNumber;
     
     NaturalNumber(int naturalNumber)
@@ -24,30 +17,32 @@ class NaturalNumber
     int aliquotSum(int n)
     {
         int aliquotSum = 0;
-        for (int divisor = 1; divisor < n; divisor++)
+        for (int divisor = 1; divisor <= Math.sqrt(n); divisor++)
         {
-            if (n % divisor == 0)
+            // Handle perfect square cases.
+            if (n % divisor == 0 && n / divisor != divisor)
             {
-                aliquotSum += divisor;
+                int factor = n / divisor;
+                aliquotSum += divisor + factor;
             }
         }
-        return aliquotSum;
+        return aliquotSum - n;
     }
     
     Classification getClassification()
     {
-        Classification classify = null;
+        Classification classify;
         if (aliquotSum(naturalNumber) == naturalNumber)
         {
             classify = Classification.PERFECT;
         }
-        if (aliquotSum(naturalNumber) < naturalNumber)
-        {
-            classify = Classification.DEFICIENT;
-        }
-        if (aliquotSum(naturalNumber) > naturalNumber)
+        else if (aliquotSum(naturalNumber) > naturalNumber)
         {
             classify = Classification.ABUNDANT;
+        }
+        else
+        {
+            classify = Classification.DEFICIENT;
         }
         return classify;
     }
