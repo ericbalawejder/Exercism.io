@@ -49,6 +49,11 @@ public class NaturalNumberTest {
     public void testSmallestNonPrimeDeficientNumberIsClassifiedCorrectly() {
         assertEquals(Classification.DEFICIENT, new NaturalNumber(4).getClassification());
     }
+    
+    @Test
+    public void testAliquotSum() {
+        assertEquals(3, new NaturalNumber(4).aliquotSum(4));
+    }
 
     @Test
     public void testMediumDeficientNumberIsClassifiedCorrectly() {
