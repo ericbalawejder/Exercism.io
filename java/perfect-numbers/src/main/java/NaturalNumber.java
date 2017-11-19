@@ -3,7 +3,7 @@
 class NaturalNumber
 {
     private final int naturalNumber;
-    
+
     NaturalNumber(int naturalNumber)
     {
         if (naturalNumber <= 0)
@@ -13,22 +13,27 @@ class NaturalNumber
         }
         this.naturalNumber = naturalNumber;
     }
-    
+
     int aliquotSum(int n)
     {
         int aliquotSum = 0;
-        for (int divisor = 1; divisor <= Math.sqrt(n); divisor++)
+        int squareRoot = (int)Math.sqrt(n);
+        for (int divisor = 1; divisor <= squareRoot; divisor++)
         {
-            // Handle perfect square cases.
-            if (n % divisor == 0 && n / divisor != divisor)
+            if (n % divisor == 0)
             {
                 int factor = n / divisor;
                 aliquotSum += divisor + factor;
             }
         }
+        // Handle perfect squares.
+        if (n == Math.pow(squareRoot, 2))
+        {
+            aliquotSum -= squareRoot;
+        }
         return aliquotSum - n;
     }
-    
+
     Classification getClassification()
     {
         Classification classify;
