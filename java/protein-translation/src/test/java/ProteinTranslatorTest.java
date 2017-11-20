@@ -100,7 +100,6 @@ public class ProteinTranslatorTest {
         assertEquals(expected, proteinTranslator.translate("UGG"));
     }
     
-    @Ignore("Remove to run test")
     @Test
     public void testTryptophanCysteineRnaSequence() {
         List<String> expected = Arrays.asList("Tryptophan", "Cysteine");
@@ -125,42 +124,36 @@ public class ProteinTranslatorTest {
         assertEquals(expected, proteinTranslator.translate("UGA"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testTranslationOfRnaToProteinList() {
         List<String> expected = Arrays.asList("Methionine","Phenylalanine","Tryptophan");
         assertEquals(expected, proteinTranslator.translate("AUGUUUUGG"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testTranslationStopsIfStopCodonAtBeginning() {
         List<String> expected = Arrays.asList();
         assertEquals(expected, proteinTranslator.translate("UAGUGG"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testTranslationStopsIfStopCodonAtEnd1() {
         List<String> expected = Arrays.asList("Tryptophan");
         assertEquals(expected, proteinTranslator.translate("UGGUAG"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testTranslationStopsIfStopCodonAtEnd2() {
         List<String> expected = Arrays.asList("Methionine", "Phenylalanine");
         assertEquals(expected, proteinTranslator.translate("AUGUUUUAA"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testTranslationStopsIfStopCodonInMiddle1() {
         List<String> expected = Arrays.asList("Tryptophan");
         assertEquals(expected, proteinTranslator.translate("UGGUAGUGG"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void testTranslationStopsIfStopCodonInMiddle2() {
         List<String> expected = Arrays.asList("Tryptophan","Cysteine","Tyrosine");

@@ -1,69 +1,52 @@
 // Translate RNA sequences into proteins.
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 import java.util.HashMap;
-//import com.google.common.base.Splitter;
 
 class ProteinTranslator
 {
-    public static void main(String[] args)
-    {
-        //System.out.println(codonsToAminoAcids);
-        //System.out.println(translate("UGGUGC"));
-        String rna = "UGUUAAUAGUAUUUU";
-        
-        //System.out.println(Arrays.toString(codon.split("(?<=\\G.{3})")));
-        
-        //String[] codons = rna.split("(?<=\\G.{3})");
-        // String[] codons = rnaSequence.split("(?<=\\G.{3})");
-        /*
-        for(String subString : Splitter.fixedLength(4).split(codon))
-        {
-            System.out.println(subString);
-        }
-        */
-    }
-    
-    private static final Map<String, String> codonsToAminoAcids = new HashMap<>();
-    
+    private static final Map<String, String> codonsToProtein = new HashMap<>();
+
     static
     {
-        codonsToAminoAcids.put("AUG", "Methionine");
-        codonsToAminoAcids.put("UUU", "Phenylalanine");
-        codonsToAminoAcids.put("UUC", "Phenylalanine");
-        codonsToAminoAcids.put("UUA", "Leucine");
-        codonsToAminoAcids.put("UUG", "Leucine");
-        codonsToAminoAcids.put("UCU", "Serine");
-        codonsToAminoAcids.put("UCC", "Serine");
-        codonsToAminoAcids.put("UCA", "Serine");
-        codonsToAminoAcids.put("UCG", "Serine");
-        codonsToAminoAcids.put("UAU", "Tyrosine");
-        codonsToAminoAcids.put("UAC", "Tyrosine");
-        codonsToAminoAcids.put("UGU", "Cysteine");
-        codonsToAminoAcids.put("UGC", "Cysteine");
-        codonsToAminoAcids.put("UGG", "Tryptophan");
-        codonsToAminoAcids.put("UAA", "STOP");
-        codonsToAminoAcids.put("UAG", "STOP");
-        codonsToAminoAcids.put("UGA", "STOP");
+        codonsToProtein.put("AUG", "Methionine");
+        codonsToProtein.put("UUU", "Phenylalanine");
+        codonsToProtein.put("UUC", "Phenylalanine");
+        codonsToProtein.put("UUA", "Leucine");
+        codonsToProtein.put("UUG", "Leucine");
+        codonsToProtein.put("UCU", "Serine");
+        codonsToProtein.put("UCC", "Serine");
+        codonsToProtein.put("UCA", "Serine");
+        codonsToProtein.put("UCG", "Serine");
+        codonsToProtein.put("UAU", "Tyrosine");
+        codonsToProtein.put("UAC", "Tyrosine");
+        codonsToProtein.put("UGU", "Cysteine");
+        codonsToProtein.put("UGC", "Cysteine");
+        codonsToProtein.put("UGG", "Tryptophan");
+        codonsToProtein.put("UAA", "STOP");
+        codonsToProtein.put("UAG", "STOP");
+        codonsToProtein.put("UGA", "STOP");
     }
-    
-    static List<String> translate(String rnaSequence)
+
+    List<String> translate(String rnaSequence)
     {
-        
-        List<String> list = new ArrayList<>();
-        if (codonsToAminoAcids.containsKey(rnaSequence))
+        List<String> protein = new ArrayList<>();
+        String[] codons = rnaSequence.split("(?<=\\G.{3})");
+        for (String codon : codons)
         {
-            if (codonsToAminoAcids.get(rnaSequence).equals("STOP"))
+            if (codonsToProtein.containsKey(codon))
             {
-                // Do nothing.
-            }
-            else
-            {
-                list.add(codonsToAminoAcids.get(rnaSequence));
+                if (codonsToProtein.get(codon).equals("STOP"))
+                {
+                    break;
+                }
+                else
+                {
+                    protein.add(codonsToProtein.get(codon));
+                }
             }
         }
-        return list;
+        return protein;
     }
 }
