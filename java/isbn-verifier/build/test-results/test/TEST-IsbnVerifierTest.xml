@@ -1,37 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="IsbnVerifierTest" tests="13" skipped="11" failures="0" errors="0" timestamp="2017-11-23T20:12:48" hostname="macbook-ericb.local" time="0.014">
+<testsuite name="IsbnVerifierTest" tests="13" skipped="6" failures="0" errors="0" timestamp="2017-11-23T20:56:52" hostname="macbook-ericb.local" time="0.013">
   <properties/>
-  <testcase name="isbnWithoutCheckDigit" classname="IsbnVerifierTest" time="0.0">
-    <skipped/>
-  </testcase>
+  <testcase name="isbnWithoutCheckDigit" classname="IsbnVerifierTest" time="0.0"/>
   <testcase name="invalidCharacterInIsbn" classname="IsbnVerifierTest" time="0.0">
     <skipped/>
   </testcase>
-  <testcase name="validIsbnNumberWithCheckDigitOfTen" classname="IsbnVerifierTest" time="0.0">
+  <testcase name="validIsbnNumberWithCheckDigitOfTen" classname="IsbnVerifierTest" time="0.001">
     <skipped/>
   </testcase>
   <testcase name="checkDigitIsACharacterOtherThanX" classname="IsbnVerifierTest" time="0.0">
     <skipped/>
   </testcase>
-  <testcase name="tooLongIsbnAndNoDashes" classname="IsbnVerifierTest" time="0.0">
-    <skipped/>
-  </testcase>
+  <testcase name="tooLongIsbnAndNoDashes" classname="IsbnVerifierTest" time="0.0"/>
   <testcase name="xIsOnlyValidAsACheckDigit" classname="IsbnVerifierTest" time="0.0">
     <skipped/>
   </testcase>
   <testcase name="isbnWithoutSeparatingDashesAndXAsCheckDigit" classname="IsbnVerifierTest" time="0.0">
     <skipped/>
   </testcase>
-  <testcase name="tooLongIsbn" classname="IsbnVerifierTest" time="0.0">
-    <skipped/>
-  </testcase>
+  <testcase name="tooLongIsbn" classname="IsbnVerifierTest" time="0.0"/>
   <testcase name="validIsbnNumber" classname="IsbnVerifierTest" time="0.009"/>
-  <testcase name="isbnWithoutCheckDigitAndDashes" classname="IsbnVerifierTest" time="0.0">
-    <skipped/>
-  </testcase>
-  <testcase name="validIsbnWithoutSeparatingDashes" classname="IsbnVerifierTest" time="0.0">
-    <skipped/>
-  </testcase>
+  <testcase name="isbnWithoutCheckDigitAndDashes" classname="IsbnVerifierTest" time="0.0"/>
+  <testcase name="validIsbnWithoutSeparatingDashes" classname="IsbnVerifierTest" time="0.001"/>
   <testcase name="checkDigitOfXShouldNotBeUsedForZero" classname="IsbnVerifierTest" time="0.0">
     <skipped/>
   </testcase>

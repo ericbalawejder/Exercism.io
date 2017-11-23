@@ -9,34 +9,6 @@ class IsbnVerifier
     public static void main(String[] args)
     {
         System.out.println(isValid("3-598-21508-8"));
-        
-        long number = 3598215088L;
-        LinkedList<Integer> stack = new LinkedList<>();
-        while (number > 0)
-        {
-            stack.push((int)(number % 10));
-            number = number / 10;
-        }
-
-        int[] isbnDigits = new int[10];
-        for (int i = 0; i < 10; i++)
-        {
-            isbnDigits[i] = stack.pop();
-        }
-        
-        for (int i = 0; i < 10; i++)
-        {
-            System.out.print(isbnDigits[i] + "  ");
-        }
-        System.out.println();
-        
-        int[] constants = IntStream.iterate(10, n -> n - 1).limit(10).toArray();
-        
-        for (int i = 0; i < constants.length; i++)
-        {
-            System.out.print(constants[i] + "  ");
-        }
-        System.out.println();
     }
     
     static boolean isValid(String stringToVerify)
@@ -53,22 +25,13 @@ class IsbnVerifier
             return false;
         }
         long isbn = Long.parseLong(stringIsbn);
-        //---------------
-        LinkedList<Integer> stack = new LinkedList<>();
-        while (isbn > 0)
-        {
-            stack.push((int)(isbn % 10));
-            isbn = isbn / 10;
-        }
-
-        int[] isbnDigits = new int[10];
-        for (int i = 0; i < 10; i++)
-        {
-            isbnDigits[i] = stack.pop();
-        }
-        //----------------
-        //int[] constants = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
-        int[] isbnConstants = IntStream.iterate(10, n -> n - 1).limit(10).toArray();
+        
+        int[] isbnDigits = numberToDigitArray(isbn);
+        
+        // isbnConstants = {isbnDigits.length,....., 3, 2, 1}
+        int[] isbnConstants = 
+            IntStream.iterate(isbnDigits.length, n -> n - 1).limit(isbnDigits.length).toArray();
+        
         int sumOfProduct = 0;
         for (int i = 0; i < 10; i++)
         {
@@ -76,5 +39,21 @@ class IsbnVerifier
         }
         
         return sumOfProduct % 11 == 0;
+    }
+    
+    static int[] numberToDigitArray(long number)
+    {
+        LinkedList<Integer> stack = new LinkedList<>();
+        while (number > 0)
+        {
+            stack.push((int)(number % 10));
+            number = number / 10;
+        }
+        int[] isbnDigits = new int[stack.size()];
+        for (int i = 0; i < isbnDigits.length; i++)
+        {
+            isbnDigits[i] = stack.pop();
+        }
+        return isbnDigits;
     }
 }

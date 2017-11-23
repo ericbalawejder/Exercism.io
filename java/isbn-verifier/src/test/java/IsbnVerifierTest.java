@@ -48,7 +48,6 @@ public class IsbnVerifierTest {
         assertFalse(isbnVerifier.isValid("3-598-2X507-9"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void validIsbnWithoutSeparatingDashes() {
         assertTrue(isbnVerifier.isValid("3598215088"));
@@ -60,25 +59,21 @@ public class IsbnVerifierTest {
         assertTrue(isbnVerifier.isValid("359821507X"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void isbnWithoutCheckDigitAndDashes() {
         assertFalse(isbnVerifier.isValid("359821507"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void tooLongIsbnAndNoDashes() {
         assertFalse(isbnVerifier.isValid("3598215078X"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void isbnWithoutCheckDigit() {
         assertFalse(isbnVerifier.isValid("3-598-21507"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void tooLongIsbn() {
         assertFalse(isbnVerifier.isValid("3-598-21507-XX"));
