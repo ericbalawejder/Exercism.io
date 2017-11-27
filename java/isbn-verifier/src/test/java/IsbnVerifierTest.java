@@ -29,7 +29,6 @@ public class IsbnVerifierTest {
         assertFalse(isbnVerifier.isValid("0-008-21508-0"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void validIsbnNumberWithCheckDigitOfTen() {
         assertTrue(isbnVerifier.isValid("3-598-21507-X"));
@@ -40,13 +39,11 @@ public class IsbnVerifierTest {
         assertFalse(isbnVerifier.isValid("3-598-21507-A"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void invalidCharacterInIsbn() {
         assertFalse(isbnVerifier.isValid("3-598-2K507-0"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void xIsOnlyValidAsACheckDigit() {
         assertFalse(isbnVerifier.isValid("3-598-2X507-9"));
@@ -57,7 +54,6 @@ public class IsbnVerifierTest {
         assertTrue(isbnVerifier.isValid("3598215088"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void isbnWithoutSeparatingDashesAndXAsCheckDigit() {
         assertTrue(isbnVerifier.isValid("359821507X"));
@@ -83,7 +79,6 @@ public class IsbnVerifierTest {
         assertFalse(isbnVerifier.isValid("3-598-21507-XX"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void checkDigitOfXShouldNotBeUsedForZero() {
         assertFalse(isbnVerifier.isValid("3-598-21515-X"));
