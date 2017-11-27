@@ -2,28 +2,38 @@
 import java.util.stream.IntStream;
 import java.util.LinkedList;
 import java.util.Arrays;
-import java.util.Collections;
 
 class IsbnVerifier
 {
     public static void main(String[] args)
     {
-        System.out.println(isValid("3-598-21508-8"));
+        System.out.println(isValid("3-598-21502-X"));
     }
     
     static boolean isValid(String stringToVerify)
     {
-        if (stringToVerify == null)
-        {
-            return false;
-        }
-        
         String stringIsbn = stringToVerify.replaceAll( "\\-", "");
         
         if ( stringIsbn.length() != 10 )
         {
             return false;
         }
+        
+        //if (!stringIsbn.matches("^.+?\\d$"))
+        if (!stringIsbn.matches("\\d+"))
+        {
+            if (!stringIsbn.matches(".*X"))
+            {
+                return false;
+            }
+            else
+            {
+                // X = 10    "3-598-21502-X"
+                //stringToVerify = "3-598-21502-10"
+            }
+        }
+        
+        
         long isbn = Long.parseLong(stringIsbn);
         
         int[] isbnDigits = numberToDigitArray(isbn);
@@ -33,7 +43,7 @@ class IsbnVerifier
             IntStream.iterate(isbnDigits.length, n -> n - 1).limit(isbnDigits.length).toArray();
         
         int sumOfProduct = 0;
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < isbnConstants.length; i++)
         {
             sumOfProduct += isbnDigits[i] * isbnConstants[i];
         }

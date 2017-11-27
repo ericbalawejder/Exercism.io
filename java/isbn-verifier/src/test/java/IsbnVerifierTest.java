@@ -23,6 +23,11 @@ public class IsbnVerifierTest {
     public void invalidIsbnCheckDigit() {
         assertFalse(isbnVerifier.isValid("3-598-21508-9"));
     }
+    
+    @Test
+    public void IsbnCheck() {
+        assertFalse(isbnVerifier.isValid("0-008-21508-0"));
+    }
 
     @Ignore("Remove to run test")
     @Test
@@ -30,7 +35,6 @@ public class IsbnVerifierTest {
         assertTrue(isbnVerifier.isValid("3-598-21507-X"));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void checkDigitIsACharacterOtherThanX() {
         assertFalse(isbnVerifier.isValid("3-598-21507-A"));
