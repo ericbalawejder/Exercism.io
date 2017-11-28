@@ -27,7 +27,6 @@ public class IsbnVerifier
             {
                 sumOfProduct += Integer.parseInt(isbn.substring(9, 10));
             }
-
             return sumOfProduct % 11 == 0;
         }
         catch (NumberFormatException numberFormatException)
