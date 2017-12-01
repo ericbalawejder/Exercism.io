@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="SumOfMultiplesTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2017-12-01T00:29:26" hostname="macbook-ericb.local" time="0.008">
+<testsuite name="SumOfMultiplesTest" tests="12" skipped="0" failures="0" errors="0" timestamp="2017-12-01T21:13:00" hostname="macbook-ericb.local" time="0.006">
   <properties/>
-  <testcase name="testSumOfMultiplesOf4and6UpToFifteen" classname="SumOfMultiplesTest" time="0.002"/>
+  <testcase name="testSumOfMultiplesOf4and6UpToFifteen" classname="SumOfMultiplesTest" time="0.001"/>
   <testcase name="testSumOfMultiplesOf3and5UpToOneHundred" classname="SumOfMultiplesTest" time="0.0"/>
   <testcase name="testSumOfMultiplesOfNoneUpToTenThousand" classname="SumOfMultiplesTest" time="0.0"/>
   <testcase name="testSumOfMultiplesOf5and6and8UpToOneHundredFifty" classname="SumOfMultiplesTest" time="0.0"/>
