@@ -1,16 +1,12 @@
-// Given a number, find the sum of all the multiples of particular numbers up to
-// but not including that number.
+// Given a number, find the sum of all the multiples of particular 
+// numbers up to but not including that number.
+import java.util.Set;
+import java.util.HashSet;
+
 class SumOfMultiples
 {
-    public static void main(String[] args)
-    {
-        int[] multiples = {3, 5};
-        SumOfMultiples sumOfMultiples = new SumOfMultiples(10, multiples);
-        System.out.println(sumOfMultiples.getSum());
-    }
-    
-    private int number;
-    private int[] set;
+    private final int number;
+    private final int[] set;
     
     SumOfMultiples(int number, int[] set)
     {
@@ -18,25 +14,9 @@ class SumOfMultiples
         this.set = set;
     }
 
-    // Remove multiples of set[], i.e. [3, 5], remove multiples of 15
-    // 2, 3, 4 = 2^3 / 2 = 4, (2*3),(2*4),(3*4),(2*3*4)
     int getSum()
     {
-        int sum = 0;
-        for (int i = 0; i < set.length; i++)
-        {
-            int n = number / set[i];
-            if (number % set[i] == 0)
-            {
-                n -= 1;
-            }
-            sum += set[i] * ((n * (n + 1)) / 2);
-        }
-        return sum;
-    }
-
-    int getSum2()
-    {
+        Set<Integer> setOfMultiples = new HashSet<>();
         int sum = 0;
         for (int i = 0; i < set.length; i++)
         {
@@ -44,10 +24,13 @@ class SumOfMultiples
             {
                 if (j % set[i] == 0)
                 {
-                    sum += j;
+                    setOfMultiples.add(j);
                 }
             }
-            
+        }
+        for (Integer element : setOfMultiples)
+        {
+            sum += element;
         }
         return sum;
     }
