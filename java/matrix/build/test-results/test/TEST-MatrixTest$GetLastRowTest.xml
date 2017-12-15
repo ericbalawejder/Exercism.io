@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="MatrixTest$GetLastRowTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2017-12-15T02:14:54" hostname="macbook-ericb.local" time="0.01">
+  <properties/>
+  <testcase name="getLastRowTest[0: checking last row of matrix constructed with string &#10;&quot;0&quot;.]" classname="MatrixTest$GetLastRowTest" time="0.0"/>
+  <testcase name="getLastRowTest[1: checking last row of matrix constructed with string &#10;&quot;0 1&quot;.]" classname="MatrixTest$GetLastRowTest" time="0.0"/>
+  <testcase name="getLastRowTest[2: checking last row of matrix constructed with string &#10;&quot;0&#10;1&quot;.]" classname="MatrixTest$GetLastRowTest" time="0.0"/>
+  <testcase name="getLastRowTest[3: checking last row of matrix constructed with string &#10;&quot;0 1&#10;2 3&quot;.]" classname="MatrixTest$GetLastRowTest" time="0.0"/>
+  <testcase name="getLastRowTest[4: checking last row of matrix constructed with string &#10;&quot;0 1 2&#10;3 4 5&#10;6 7 8&quot;.]" classname="MatrixTest$GetLastRowTest" time="0.0"/>
+  <testcase name="getLastRowTest[0: checking last row of matrix constructed with string &#10;&quot;0&quot;.]" classname="MatrixTest$GetLastRowTest" time="0.0"/>
+  <testcase name="getLastRowTest[1: checking last row of matrix constructed with string &#10;&quot;0 1&quot;.]" classname="MatrixTest$GetLastRowTest" time="0.0"/>
+  <testcase name="getLastRowTest[2: checking last row of matrix constructed with string &#10;&quot;0&#10;1&quot;.]" classname="MatrixTest$GetLastRowTest" time="0.0"/>
+  <testcase name="getLastRowTest[3: checking last row of matrix constructed with string &#10;&quot;0 1&#10;2 3&quot;.]" classname="MatrixTest$GetLastRowTest" time="0.0"/>
+  <testcase name="getLastRowTest[4: checking last row of matrix constructed with string &#10;&quot;0 1 2&#10;3 4 5&#10;6 7 8&quot;.]" classname="MatrixTest$GetLastRowTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

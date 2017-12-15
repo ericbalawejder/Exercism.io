@@ -11,9 +11,9 @@ class LuhnValidator
         }
         String number = new StringBuilder(candidate).reverse().toString();
         int sum = 0;
-        int digit = 0;
         for (int i = 0; i < number.length(); i++)
         {
+            int digit = 0;
             if (i % 2 == 1)
             {
                 digit = Integer.parseInt(number.substring(i, i + 1));
