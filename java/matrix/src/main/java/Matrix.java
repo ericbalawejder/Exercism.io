@@ -4,78 +4,72 @@ public class Matrix
 {
     public static void main(String[] args)
     {
-        String testMatrix = "9 8 7\n" +
-                            "5 3 2\n" +
-                            "6 6 7";
-        System.out.println(testMatrix);
-        System.out.println(testMatrix.length());
-        System.out.println(testMatrix.contains("\n"));
+        String testMatrix = "3 4 6\n" +
+                            "5 9 8\n" +
+                            "2 4 0";
         
+        System.out.println(testMatrix);
         Matrix matrix = new Matrix(testMatrix);
         System.out.println(matrix.getRowsCount());
         System.out.println(matrix.getColumnsCount());
-        print(matrix.getRow(2));
-        print(matrix.getColumn(0));
+        print(matrix.getColumn(2));
+        print(matrix.getRow(0));
     }
     
-    private int[] matrix;
-    private int numberOfRows = 0;
-    private int numberOfColumns;
+    private int[][] matrix;
+    private int rows;
+    private int columns;
 
     Matrix(String matrixAsString)
     {
-        int numberOfElements = 0;
-        int val = 0;
-        matrix = new int[matrixAsString.length()];
-        
-        for (int i = 0; i < matrixAsString.length(); i++)
-        {
-            if (matrixAsString.charAt(i) == '\n' || matrixAsString.charAt(i) == ' ')
-            {
-                matrix[numberOfElements++] = val;
-                val = 0;
-                if (matrixAsString.charAt(i) == '\n') 
-                {
-                    numberOfRows++;
-                }
-            } 
-            else
-            {
-                val = 10 * val + (matrixAsString.charAt(i) - '0');
-                //val = Integer.parseInt(matrixAsString.charAt(i));
-            }
-        }
-        matrix[numberOfElements++] = val;
-        numberOfRows++;
-        numberOfColumns = numberOfElements / numberOfRows;
+        createMatrix(matrixAsString);
     }
 
-    int getColumnsCount()
+    private void createMatrix(String matrixAsString)
     {
-        return numberOfColumns;
+        String[] rowsAsStrings = matrixAsString.split("\\n");
+        String[] numbersInColumnAsStrings = rowsAsStrings[0].split(" ");
+
+        rows = rowsAsStrings.length;
+        columns = numbersInColumnAsStrings.length;
+
+        matrix = new int[rows][columns];
+        fillMatrix(rowsAsStrings);
+    }
+
+    private void fillMatrix(String[] stringRows)
+    {
+        for (int row = 0; row < rows; row++)
+        {
+            for (int col = 0; col < columns; col++)
+            {
+                String[] rowAsStrings = stringRows[row].split(" ");
+                matrix[row][col] = Integer.valueOf(rowAsStrings[col]);
+            }
+        }
     }
 
     int getRowsCount()
     {
-        return numberOfRows;
+        return rows;
     }
 
-    int[] getRow(int n)
+    int getColumnsCount()
     {
-        int[] row = new int[numberOfColumns];
-        for (int i = 0; i < numberOfColumns; i++)
-        {
-            row[i] = matrix[n * numberOfColumns + i];
-        }
-        return row;
+        return columns;
     }
 
-    int[] getColumn(int n)
+    int[] getRow(int row)
     {
-        int[] column = new int[numberOfRows];
-        for (int i = 0; i < numberOfRows; i++)
+        return matrix[row];
+    }
+
+    int[] getColumn(int col)
+    {
+        int[] column = new int[rows];
+        for (int row = 0; row < rows; row++)
         {
-            column[i] = matrix[numberOfColumns * i + n];
+            column[row] = matrix[row][col];
         }
         return column;
     }
