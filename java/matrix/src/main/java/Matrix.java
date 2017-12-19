@@ -1,5 +1,7 @@
 // Given a string representing a matrix of numbers, return the rows and columns of
 // that matrix.
+import java.util.Arrays;
+
 public class Matrix
 {
     public static void main(String[] args)
@@ -9,42 +11,32 @@ public class Matrix
                             "2 4 0";
         
         System.out.println(testMatrix);
-        Matrix matrix = new Matrix(testMatrix);
-        System.out.println(matrix.getRowsCount());
-        System.out.println(matrix.getColumnsCount());
-        print(matrix.getColumn(2));
-        print(matrix.getRow(0));
+        Matrix dmatrix = new Matrix(testMatrix);
+        System.out.println(Arrays.deepToString(matrix));
+        //System.out.println(matrix.getRowsCount());
+        //System.out.println(matrix.getColumnsCount());
+        //print(matrix.getColumn(2));
+        //print(matrix.getRow(0));
     }
     
-    private int[][] matrix;
+    private static int[][] matrix;
     private int rows;
     private int columns;
 
     Matrix(String matrixAsString)
     {
-        createMatrix(matrixAsString);
-    }
-
-    private void createMatrix(String matrixAsString)
-    {
-        String[] rowsAsStrings = matrixAsString.split("\\n");
-        String[] numbersInColumnAsStrings = rowsAsStrings[0].split(" ");
-
-        rows = rowsAsStrings.length;
-        columns = numbersInColumnAsStrings.length;
-
+        String[] rowCount = matrixAsString.split("\\n");
+        String[] columnCount = rowCount[0].split(" ");
+        rows = rowCount.length;
+        columns = columnCount.length;
         matrix = new int[rows][columns];
-        fillMatrix(rowsAsStrings);
-    }
-
-    private void fillMatrix(String[] stringRows)
-    {
+        
         for (int row = 0; row < rows; row++)
         {
             for (int col = 0; col < columns; col++)
             {
-                String[] rowAsStrings = stringRows[row].split(" ");
-                matrix[row][col] = Integer.valueOf(rowAsStrings[col]);
+                String[] rowAsStrings = rowCount[row].split(" ");
+                matrix[row][col] = Integer.parseInt(rowAsStrings[col]);
             }
         }
     }
@@ -77,6 +69,15 @@ public class Matrix
     static void print(int[] array)
     {
         for (int number : array)
+        {
+            System.out.print(number + " ");
+        }
+        System.out.println();
+    }
+    
+    static void print(String[] array)
+    {
+        for (String number : array)
         {
             System.out.print(number + " ");
         }

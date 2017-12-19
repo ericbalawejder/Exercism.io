@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="MatrixTest$GetFirstRowTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2017-12-15T03:11:47" hostname="macbook-ericb.local" time="0.018">
+<testsuite name="MatrixTest$GetFirstRowTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2017-12-15T06:09:05" hostname="macbook-ericb.local" time="0.015">
   <properties/>
   <testcase name="getFirstRowTest[0: checking first row of matrix constructed with string &#10;&quot;0&quot;.]" classname="MatrixTest$GetFirstRowTest" time="0.0"/>
   <testcase name="getFirstRowTest[1: checking first row of matrix constructed with string &#10;&quot;0 1&quot;.]" classname="MatrixTest$GetFirstRowTest" time="0.0"/>
