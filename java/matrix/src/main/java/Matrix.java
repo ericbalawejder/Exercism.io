@@ -1,25 +1,8 @@
 // Given a string representing a matrix of numbers, return the rows and columns of
 // that matrix.
-import java.util.Arrays;
-
 public class Matrix
 {
-    public static void main(String[] args)
-    {
-        String testMatrix = "3 4 6\n" +
-                            "5 9 8\n" +
-                            "2 4 0";
-        
-        System.out.println(testMatrix);
-        Matrix dmatrix = new Matrix(testMatrix);
-        System.out.println(Arrays.deepToString(matrix));
-        //System.out.println(matrix.getRowsCount());
-        //System.out.println(matrix.getColumnsCount());
-        //print(matrix.getColumn(2));
-        //print(matrix.getRow(0));
-    }
-    
-    private static int[][] matrix;
+    private int[][] matrix;
     private int rows;
     private int columns;
 

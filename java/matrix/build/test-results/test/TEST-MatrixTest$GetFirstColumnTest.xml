@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="MatrixTest$GetFirstColumnTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2017-12-15T06:09:05" hostname="macbook-ericb.local" time="0.029">
+<testsuite name="MatrixTest$GetFirstColumnTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2017-12-25T06:10:18" hostname="macbook-ericb.local" time="0.033">
   <properties/>
-  <testcase name="getFirstColumnTest[0: checking first column of matrix constructed with string &#10;&quot;0&quot;.]" classname="MatrixTest$GetFirstColumnTest" time="0.001"/>
+  <testcase name="getFirstColumnTest[0: checking first column of matrix constructed with string &#10;&quot;0&quot;.]" classname="MatrixTest$GetFirstColumnTest" time="0.002"/>
   <testcase name="getFirstColumnTest[1: checking first column of matrix constructed with string &#10;&quot;0 1&quot;.]" classname="MatrixTest$GetFirstColumnTest" time="0.0"/>
   <testcase name="getFirstColumnTest[2: checking first column of matrix constructed with string &#10;&quot;0&#10;1&quot;.]" classname="MatrixTest$GetFirstColumnTest" time="0.0"/>
   <testcase name="getFirstColumnTest[3: checking first column of matrix constructed with string &#10;&quot;0 1&#10;2 3&quot;.]" classname="MatrixTest$GetFirstColumnTest" time="0.0"/>

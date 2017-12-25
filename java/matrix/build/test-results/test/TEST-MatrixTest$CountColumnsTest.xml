@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="MatrixTest$CountColumnsTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2017-12-15T06:09:05" hostname="macbook-ericb.local" time="0.022">
+<testsuite name="MatrixTest$CountColumnsTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2017-12-25T06:10:18" hostname="macbook-ericb.local" time="0.024">
   <properties/>
   <testcase name="countColumnsTest[0: expected matrix constructed with string &#10;&quot;0&quot; to have 1 column(s).]" classname="MatrixTest$CountColumnsTest" time="0.0"/>
-  <testcase name="countColumnsTest[1: expected matrix constructed with string &#10;&quot;0 1&quot; to have 2 column(s).]" classname="MatrixTest$CountColumnsTest" time="0.001"/>
+  <testcase name="countColumnsTest[1: expected matrix constructed with string &#10;&quot;0 1&quot; to have 2 column(s).]" classname="MatrixTest$CountColumnsTest" time="0.0"/>
   <testcase name="countColumnsTest[2: expected matrix constructed with string &#10;&quot;0&#10;1&quot; to have 1 column(s).]" classname="MatrixTest$CountColumnsTest" time="0.0"/>
   <testcase name="countColumnsTest[3: expected matrix constructed with string &#10;&quot;0 1&#10;2 3&quot; to have 2 column(s).]" classname="MatrixTest$CountColumnsTest" time="0.0"/>
   <testcase name="countColumnsTest[4: expected matrix constructed with string &#10;&quot;0 1 2&#10;3 4 5&#10;6 7 8&quot; to have 3 column(s).]" classname="MatrixTest$CountColumnsTest" time="0.0"/>
   <testcase name="countColumnsTest[0: expected matrix constructed with string &#10;&quot;0&quot; to have 1 column(s).]" classname="MatrixTest$CountColumnsTest" time="0.0"/>
   <testcase name="countColumnsTest[1: expected matrix constructed with string &#10;&quot;0 1&quot; to have 2 column(s).]" classname="MatrixTest$CountColumnsTest" time="0.0"/>
   <testcase name="countColumnsTest[2: expected matrix constructed with string &#10;&quot;0&#10;1&quot; to have 1 column(s).]" classname="MatrixTest$CountColumnsTest" time="0.0"/>
-  <testcase name="countColumnsTest[3: expected matrix constructed with string &#10;&quot;0 1&#10;2 3&quot; to have 2 column(s).]" classname="MatrixTest$CountColumnsTest" time="0.0"/>
+  <testcase name="countColumnsTest[3: expected matrix constructed with string &#10;&quot;0 1&#10;2 3&quot; to have 2 column(s).]" classname="MatrixTest$CountColumnsTest" time="0.001"/>
   <testcase name="countColumnsTest[4: expected matrix constructed with string &#10;&quot;0 1 2&#10;3 4 5&#10;6 7 8&quot; to have 3 column(s).]" classname="MatrixTest$CountColumnsTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
