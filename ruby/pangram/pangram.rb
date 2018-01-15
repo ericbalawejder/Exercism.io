@@ -1,7 +1,7 @@
 # Class Pangram
 class Pangram
   def self.pangram?(phrase)
-      (('a'..'z').to_a - phrase.downcase.chars.to_a).empty?
+      ([*'a'..'z'] - phrase.downcase.chars).empty?
   end
 end
 
