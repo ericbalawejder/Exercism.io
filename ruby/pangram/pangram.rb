@@ -1,11 +1,7 @@
-require 'set'
-
 # Class Pangram
 class Pangram
   def self.pangram?(phrase)
-    character_set = Set[]
-    phrase.downcase.each_byte { |x| character_set.add(x) if x >= 97 && x <= 122 }
-    character_set.size == 26
+      (('a'..'z').to_a - phrase.downcase.chars.to_a).empty?
   end
 end
 
