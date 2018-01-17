@@ -10,4 +10,5 @@ fi
 start_date=$1
 gigasecond=1000000000
 date_to_seconds=$(date +%s --date="$start_date")
-date --date="@$((date_to_seconds + $gigasecond))" +"%a %b %-e %T %Z %Y"
+#date --date="@$((date_to_seconds + $gigasecond))" +"%a %b %-e %T %Z %Y"
+date --date="@$((date_to_seconds + $gigasecond))"
