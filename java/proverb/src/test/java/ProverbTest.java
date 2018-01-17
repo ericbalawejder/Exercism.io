@@ -15,7 +15,6 @@ public class ProverbTest {
         assertThat(proverb, is(expected));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void singlePieceOfProverb() {
         String[] words  = new String[]{"nail"};
@@ -25,7 +24,6 @@ public class ProverbTest {
         assertThat(proverb, is(expected));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void twoPiecesOfProverb() {
         String[] words  = new String[]{"nail", "shoe"};
@@ -36,7 +34,6 @@ public class ProverbTest {
         assertThat(proverb, is(expected));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void shortChainOfConsequences() {
         String[] words  = new String[]{"nail", "shoe", "horse"};
@@ -48,7 +45,6 @@ public class ProverbTest {
         assertThat(proverb, is(expected));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void fullProverb() {
         String[] words  = new String[]{"nail", "shoe", "horse", "rider", "message", "battle", "kingdom"};
@@ -64,7 +60,6 @@ public class ProverbTest {
         assertThat(proverb, is(expected));
     }
 
-    @Ignore("Remove to run test")
     @Test
     public void fourPiecesModernizedProverb() {
         String[] words  = new String[]{"pin", "gun", "soldier", "battle"};

@@ -20,23 +20,14 @@ class Proverb
 
         for (int i = words.length - 1; i >= 0; i--)
         {
-            if (words.length == 1)
+            if (i == 0)
             {
                 String endLine = "And all for the want of a " + words[i] + ".";
                 poem.append(endLine);
                 break;
             }
-            else
-            {
-                if (i == 0)
-                {
-                    String endLine = "And all for the want of a " + words[i] + ".";
-                    poem.append(endLine);
-                    break;
-                }
-                String line = "For want of " + words[i - 1] + " the " + words[i] + " was lost.\n";
-                poem.append(line);
-            }
+            String line = "For want of a " + words[i - 1] + " the " + words[i] + " was lost.\n";
+            poem.insert(0, line);
         }
         return poem.toString();
     }
