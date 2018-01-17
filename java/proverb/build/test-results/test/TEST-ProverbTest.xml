@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ProverbTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-01-17T16:15:29" hostname="macbook-ericb.local" time="0.006">
+<testsuite name="ProverbTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-01-17T20:13:23" hostname="macbook-ericb.local" time="0.005">
   <properties/>
-  <testcase name="shortChainOfConsequences" classname="ProverbTest" time="0.004"/>
+  <testcase name="shortChainOfConsequences" classname="ProverbTest" time="0.003"/>
   <testcase name="fullProverb" classname="ProverbTest" time="0.001"/>
   <testcase name="zeroWordsAreGiven" classname="ProverbTest" time="0.0"/>
   <testcase name="singlePieceOfProverb" classname="ProverbTest" time="0.0"/>
-  <testcase name="twoPiecesOfProverb" classname="ProverbTest" time="0.001"/>
+  <testcase name="twoPiecesOfProverb" classname="ProverbTest" time="0.0"/>
   <testcase name="fourPiecesModernizedProverb" classname="ProverbTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
