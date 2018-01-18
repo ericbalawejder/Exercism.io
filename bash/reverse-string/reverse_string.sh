@@ -7,5 +7,4 @@ then
   exit 1
 fi
 
-input=$1
-echo $input|rev
+echo $1 | rev
