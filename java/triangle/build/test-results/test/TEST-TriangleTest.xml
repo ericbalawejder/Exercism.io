@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="TriangleTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2018-01-18T19:46:24" hostname="macbook-ericb.local" time="0.014">
+  <properties/>
+  <testcase name="verySmallTrianglesCanBeEquilateral" classname="TriangleTest" time="0.002"/>
+  <testcase name="isoscelesTrianglesHaveLastTwoSidesEqual" classname="TriangleTest" time="0.0"/>
+  <testcase name="trianglesWithOneUnequalSideAreNotEquilateral" classname="TriangleTest" time="0.0"/>
+  <testcase name="scaleneTrianglesHaveNoEqualSides" classname="TriangleTest" time="0.001"/>
+  <testcase name="trianglesWithNoEqualSidesAreNotEquilateral" classname="TriangleTest" time="0.0"/>
+  <testcase name="isoscelesTrianglesHaveFirstAndLastSidesEqual" classname="TriangleTest" time="0.0"/>
+  <testcase name="isoscelesTrianglesMustHaveAtLeastTwoEqualSides" classname="TriangleTest" time="0.0"/>
+  <testcase name="testSidesThatViolateTriangleInequalityAreNotScaleneEvenIfTheyAreAllDifferent" classname="TriangleTest" time="0.005"/>
+  <testcase name="trianglesWithAllSidesEqualAreNotScalene" classname="TriangleTest" time="0.0"/>
+  <testcase name="trianglesWithOneUnequalSideAreNotScalene" classname="TriangleTest" time="0.0"/>
+  <testcase name="equilateralTrianglesHaveEqualSides" classname="TriangleTest" time="0.0"/>
+  <testcase name="testSidesThatViolateTriangleInequalityAreNotIsoscelesEvenIfTwoAreEqual" classname="TriangleTest" time="0.0"/>
+  <testcase name="trianglesWithNoSizeAreIllegal" classname="TriangleTest" time="0.001"/>
+  <testcase name="isoscelesTrianglesHaveTwoFirstSidesEqual" classname="TriangleTest" time="0.0"/>
+  <testcase name="verySmallTrianglesCanBeIsosceles" classname="TriangleTest" time="0.0"/>
+  <testcase name="isoscelesTrianglesCanHaveAllSidesEqual" classname="TriangleTest" time="0.001"/>
+  <testcase name="verySmallTrianglesCanBeScalene" classname="TriangleTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
