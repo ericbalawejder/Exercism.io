@@ -1,13 +1,6 @@
+// Determine if a triangle is equilateral, isosceles, or scalene.
 class Triangle
 {
-    public static void main(String[] args) throws TriangleException
-    {
-        Triangle triangle = new Triangle(9, 40, 41);
-        System.out.println(triangle.isEquilateral());
-        System.out.println(triangle.isIsosceles());
-        System.out.println(triangle.isScalene());
-    }
-    
     private double side1;
     private double side2;
     private double side3;
@@ -18,13 +11,16 @@ class Triangle
         {
             throw new TriangleException("Triangles with no size are illegal");
         }
-        if (side1 + side2 < side3 || side1 + side3 < side2 || side2 + side3 < side1)
+        else if (side1 + side2 < side3 || side1 + side3 < side2 || side2 + side3 < side1)
         {
             throw new TriangleException("Fails triangle inequality: x + y >= z");
         }
-        this.side1 = side1;
-        this.side2 = side2;
-        this.side3 = side3;
+        else
+        {
+            this.side1 = side1;
+            this.side2 = side2;
+            this.side3 = side3;
+        }
     }
 
     boolean isEquilateral()
@@ -40,5 +36,10 @@ class Triangle
     boolean isScalene()
     {
         return side1 != side2 && side1 != side3 && side2 != side3;
+    }
+    
+    boolean isDegenerate()
+    {
+        return side1 + side2 == side3 || side1 + side3 == side2 || side2 + side3 == side1;
     }
 }

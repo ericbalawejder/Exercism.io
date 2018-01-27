@@ -126,4 +126,11 @@ public class TriangleTest {
 
         assertTrue(triangle.isScalene());
     }
+    
+    @Test
+    public void isDegenerateTriangle() throws TriangleException {
+        Triangle triangle = new Triangle(3, 4, 7);
+
+        assertTrue(triangle.isDegenerate());
+    }
 }
