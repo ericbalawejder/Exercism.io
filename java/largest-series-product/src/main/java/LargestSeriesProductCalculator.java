@@ -10,6 +10,10 @@ class LargestSeriesProductCalculator
     
     LargestSeriesProductCalculator(String inputNumber)
     {
+        if (!inputNumber.matches("\\d*"))
+        {
+            throw new IllegalArgumentException("String to search may only contain digits.");
+        }
         this.inputNumber = inputNumber;
     }
 

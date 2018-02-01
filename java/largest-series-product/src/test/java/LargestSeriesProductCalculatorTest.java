@@ -157,7 +157,7 @@ public class LargestSeriesProductCalculatorTest {
         calculator.calculateLargestProductForSeriesLength(1);
     }
 
-    @Ignore("Remove to run test")
+    //@Ignore("Remove to run test")
     @Test
     public void testStringToSearchContainingNonDigitCharacterIsRejected() {
         expectedException.expect(IllegalArgumentException.class);
