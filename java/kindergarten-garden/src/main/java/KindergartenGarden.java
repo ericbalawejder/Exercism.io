@@ -1,60 +1,50 @@
+import java.util.Arrays;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Set;
-import java.util.TreeSet;
 
 // Given a diagram, determine which plants each child in the kindergarten class is
 // responsible for.
-public class KindergartenGarden
+class KindergartenGarden
 {
-    public static void main(String[] args)
-    {
-        System.out.println("Boys have penises and girls have vaginas");
-        System.out.println(students);
-        String plants = "VRCGVVRVCGGCCGVRGCVCGCGV\nVRCCCGCRRGVCGCRVVCVGCGCV";
-        String[] rows = plants.split("\n");
-        String firstRowOfPlants = rows[0];
-        String secondRowOfPlants = rows[1];
-        System.out.println(firstRowOfPlants);
-        System.out.println(secondRowOfPlants);
-    }
-
-    private static Map<String, Integer> studentStartingIndex = new HashMap<>();
-    static
-    {
-        studentStartingIndex.put("Alice", 0);
-        studentStartingIndex.put("Bob", 2);
-        studentStartingIndex.put("Charlie", 4);
-        studentStartingIndex.put("David", 6);
-        studentStartingIndex.put("Eve", 8);
-        studentStartingIndex.put("Fred", 10);
-        studentStartingIndex.put("Ginny", 12);
-        studentStartingIndex.put("Harriet", 14);
-        studentStartingIndex.put("Ileana", 16);
-        studentStartingIndex.put("Joseph", 18);
-        studentStartingIndex.put("Kincaid", 20);
-        studentStartingIndex.put("Larry", 22);
-    }
-
-    static Set<String> students = new TreeSet<>(studentStartingIndex.keySet());
+    private String[] students;
     private String garden;
+    private static final int PLANTS_PER_STUDENT_PER_ROW = 2;
+    private final int newRowLocation;
 
-    public KindergartenGarden(String garden, String[] students)
-    {
-        
-    }
+    private static final String[] DEFAULT_STUDENTS = {
+            "Alice", "Bob", "Charlie", "David",
+            "Eve", "Fred", "Ginny", "Harriet",
+            "Ileana", "Joseph", "Kincaid", "Larry"
+    };
 
-    public KindergartenGarden(String garden)
+    KindergartenGarden(String garden, String[] students)
     {
         this.garden = garden;
+        Arrays.sort(students);
+        this.students = students;
+        newRowLocation = garden.indexOf('\n') + 1;
     }
 
-    private List<Plant> getPlantsOfStudent(String student)
+    KindergartenGarden(String garden)
     {
-        List<Plant> plants = new ArrayList<>();
-        
+        this(garden, DEFAULT_STUDENTS);
+    }
+
+    List<Plant> getPlantsOfStudent(String student)
+    {
+        List<Plant> plants = new ArrayList<Plant>();
+        int studentPlantsIndex = Arrays.binarySearch(students, student) * PLANTS_PER_STUDENT_PER_ROW;
+
+        for (int i = studentPlantsIndex; i < studentPlantsIndex + PLANTS_PER_STUDENT_PER_ROW; i++)
+        {
+            plants.add(Plant.getPlant(garden.charAt(i)));
+        }
+
+        for (int i = newRowLocation + studentPlantsIndex;
+             i < newRowLocation + studentPlantsIndex + PLANTS_PER_STUDENT_PER_ROW; i++)
+        {
+            plants.add(Plant.getPlant(garden.charAt(i)));
+        }
         return plants;
     }
 }

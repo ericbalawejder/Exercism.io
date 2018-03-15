@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="KindergartenGardenTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2018-03-14T15:21:16" hostname="macbook-ericb.local" time="0.005">
+  <properties/>
+  <testcase name="singleStudent2" classname="KindergartenGardenTest" time="0.002"/>
+  <testcase name="fullGardenFirstStudent" classname="KindergartenGardenTest" time="0.0"/>
+  <testcase name="twoStudents" classname="KindergartenGardenTest" time="0.001"/>
+  <testcase name="fullGardenSecondToLastStudent" classname="KindergartenGardenTest" time="0.0"/>
+  <testcase name="singleStudent" classname="KindergartenGardenTest" time="0.0"/>
+  <testcase name="oneGardenThirdStudent" classname="KindergartenGardenTest" time="0.0"/>
+  <testcase name="fullGardenSecondStudent" classname="KindergartenGardenTest" time="0.0"/>
+  <testcase name="oneGardenSecondStudent" classname="KindergartenGardenTest" time="0.0"/>
+  <testcase name="fullGardenLastStudent" classname="KindergartenGardenTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
