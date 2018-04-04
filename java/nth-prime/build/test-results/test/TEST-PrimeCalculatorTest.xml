@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="PrimeCalculatorTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-04-04T16:38:52" hostname="macbook-ericb.local" time="0.042">
+  <properties/>
+  <testcase name="testUndefinedPrime" classname="PrimeCalculatorTest" time="0.008"/>
+  <testcase name="testSixthPrime" classname="PrimeCalculatorTest" time="0.003"/>
+  <testcase name="testFirstPrime" classname="PrimeCalculatorTest" time="0.0"/>
+  <testcase name="testSecondPrime" classname="PrimeCalculatorTest" time="0.0"/>
+  <testcase name="testBigPrime" classname="PrimeCalculatorTest" time="0.03"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
