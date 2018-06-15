@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="MatrixTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2018-06-12T17:35:02" hostname="macbook-ericb.local" time="0.012">
+  <properties/>
+  <testcase name="testCanIdentifyThatEmptyMatrixHasNoSaddlePoints" classname="MatrixTest" time="0.001"/>
+  <testcase name="testCanIdentifySaddlePointInBottomRightCorner" classname="MatrixTest" time="0.008"/>
+  <testcase name="testCanIdentifyMultipleSaddlePoints" classname="MatrixTest" time="0.0"/>
+  <testcase name="testCanIdentifyLackOfSaddlePointsWhenThereAreNone" classname="MatrixTest" time="0.0"/>
+  <testcase name="testCanIdentifySingleSaddlePoint" classname="MatrixTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
