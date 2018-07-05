@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="PangramCheckerTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2017-06-23T18:53:18" hostname="macbook-ericb.local" time="0.006">
+<testsuite name="PangramCheckerTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2018-07-05T22:37:12" hostname="macbook-ericb.local" time="0.006">
   <properties/>
-  <testcase name="panagramInAlphabetOtherThanAsciiIsNotRecognizedAsPangram" classname="PangramCheckerTest" time="0.003"/>
+  <testcase name="panagramInAlphabetOtherThanAsciiIsNotRecognizedAsPangram" classname="PangramCheckerTest" time="0.002"/>
   <testcase name="pangramWithMixedCaseAndPunctuationIsRecognizedAsPangram" classname="PangramCheckerTest" time="0.0"/>
   <testcase name="pangramWithNumbersIsRecognizedAsPangram" classname="PangramCheckerTest" time="0.0"/>
   <testcase name="phraseMissingCharacterXIsNotPangram" classname="PangramCheckerTest" time="0.0"/>
