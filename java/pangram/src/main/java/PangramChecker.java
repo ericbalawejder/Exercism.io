@@ -1,26 +1,14 @@
 // Determine if a sentence is a pangram.
-import java.util.HashSet;
 import java.util.Set;
-
-import java.util.stream.Stream;
-import java.util.stream.IntStream;
+import java.util.HashSet;
 
 public class PangramChecker {
 
   public static void main(String... args) {
-    String testTrue = "the_quick_brown_fox_jumps_over_the_lazy_dog";
-    String testFalse = "a quick movement of the enemy will jeopardize five gunboats";
-    String testWithNumbersTrue = "the 1 quick brown foX Jumps over the 2 lazy doGs";
-
-    System.out.println(isPangram(testWithNumbersTrue));
-    System.out.println(isPangram(testWithNumbersTrue));
-    System.out.println(isPangram(testWithNumbersTrue));
-
-    Stream<Character> characterStream = testFalse.chars()
-      .mapToObj(c -> (char) c);
-    characterStream.forEach(System.out::print);
+    String testString = "Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich.";
     
-    System.out.println();
+    System.out.println(isPangram(testString));
+    System.out.println(isPangram3(testString));
   }
 
   public static boolean isPangram(String input) {
@@ -29,13 +17,23 @@ public class PangramChecker {
     input
         .toLowerCase()
         .chars()
-        .filter(character -> Character.isAlphabetic(character))
+        .filter(character -> (int)'a' <= character && character <= (int)'z')
         .forEach(
-            e -> {
-              if (!set.contains(e)) {
-                set.add(e);
+            character -> {
+              if (!set.contains(character)) {
+                set.add(character);
               }
             });
     return set.size() == 26;
   }
+  
+  public static boolean isPangram3(String input) {
+    return input
+        .toLowerCase()
+        .chars()
+        //.filter(Character::isAlphabetic)
+        .filter(character -> (int)'a' <= character && character <= (int)'z')
+        .distinct()
+        .count() == 26;
+      }
 }
