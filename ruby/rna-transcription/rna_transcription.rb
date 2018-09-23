@@ -4,12 +4,21 @@ class Complement
                   'C' => 'G',
                   'T' => 'A',
                   'A' => 'U' }.freeze
+  private_constant :COMPLEMENTS
 
   def self.of_dna(strand)
-    # COMPLEMENTS.fetch(nucleotide, "default_value for nil key")
-    rna = strand.chars.map { |nucleotide| COMPLEMENTS.fetch(nucleotide, '*') }.join
-    rna = '' if rna.include?('*')
-    rna
+    strand.chars.each_with_object('') do |nucleotide, rna|
+      rna << complement(nucleotide)
+      break '' if rna.chars.last == '*'
+    end
+  end
+
+  def self.complement(nucleotide)
+    complements.fetch(nucleotide, '*')
+  end
+
+  private_class_method def self.complements
+    COMPLEMENTS
   end
 end
 
@@ -17,16 +26,3 @@ module BookKeeping
   # Where the version number matches the one in the test.
   VERSION = 4
 end
-
-# Does not handle invalid input
-# class Complement
-#   DNA_RNA_MAPPINGS = ['GCTA', 'CGAU']
-#
-#   def self.of_dna(strand)
-#     strand.tr(*DNA_RNA_MAPPINGS)
-#   end
-#
-#   def self.of_rna(strand)
-#     strand.tr(*DNA_RNA_MAPPINGS.reverse)
-#   end
-# end
