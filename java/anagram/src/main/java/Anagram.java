@@ -2,18 +2,10 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Arrays;
-
 
 // Using the fundamental theorem of arithmetic, determine if two words are anagrams.
 // Limited by int product.
-public class Anagram
-{
-    public static void main(String[] args)
-    {
-        Anagram anagram = new Anagram("racecar");
-        System.out.println(anagram.match(Arrays.asList("Racecar", "racecar", "inlets", "RACECAR")));
-    }
+public class Anagram {
 
     private final String word;
     private final static Map<Character, Integer> characterMapping = new HashMap<Character, Integer>();
@@ -62,14 +54,24 @@ public class Anagram
         return matchingList;
     }
 
-    public boolean isAnagram(String wordToCheck)
-    {
+    public boolean suffixContainsUpperCase(String word1, String word2) {
+        for (int i = 1; i < word1.length(); i++) {
+            if(!((int)'a' <= word1.charAt(i) && word1.charAt(i) <= (int)'z') ||
+                !((int)'a' <= word2.charAt(i) && word2.charAt(i) <= (int)'z')) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isAnagram(String wordToCheck) {
         int product1 = 1;
         int product2 = 1;
 
-        if (word.length() != wordToCheck.length()) {
+        if (word.length() != wordToCheck.length() || suffixContainsUpperCase(word, wordToCheck)) {
             return false;
         } else {
+            
             char[] characterArray1 = word.toLowerCase().toCharArray();
             char[] characterArray2 = wordToCheck.toLowerCase().toCharArray();
 

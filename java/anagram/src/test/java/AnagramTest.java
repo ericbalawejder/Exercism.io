@@ -95,7 +95,7 @@ public class AnagramTest {
         assertTrue(detector.match(Collections.singletonList("patter")).isEmpty());
     }
 
-    @Ignore("Remove to run test")
+    //@Ignore("Remove to run test")
     @Test
     public void testCapitalWordIsNotOwnAnagram() {
         Anagram detector = new Anagram("BANANA");
