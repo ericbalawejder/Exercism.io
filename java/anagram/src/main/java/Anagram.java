@@ -54,7 +54,7 @@ public class Anagram {
         return matchingList;
     }
 
-    public boolean suffixContainsUpperCase(String word1, String word2) {
+    public boolean suffixContainsUpperCaseLetter(String word1, String word2) {
         for (int i = 1; i < word1.length(); i++) {
             if(!((int)'a' <= word1.charAt(i) && word1.charAt(i) <= (int)'z') ||
                 !((int)'a' <= word2.charAt(i) && word2.charAt(i) <= (int)'z')) {
@@ -68,7 +68,7 @@ public class Anagram {
         int product1 = 1;
         int product2 = 1;
 
-        if (word.length() != wordToCheck.length() || suffixContainsUpperCase(word, wordToCheck)) {
+        if (word.length() != wordToCheck.length() || suffixContainsUpperCaseLetter(word, wordToCheck)) {
             return false;
         } else {
             
