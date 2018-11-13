@@ -10,7 +10,8 @@
   run bash gigasecond.sh '2011-04-25Z'
 
   [ "$status" -eq 0 ]
-  [ "$output" == 'Thu Jan 1 01:46:40 UTC 2043' ] || [ "$output" == 'Thu Jan  1 01:46:40 UTC 2043' ]
+  [ "$output" == 'Thu Jan 1 01:46:40 UTC 2043' ]
+   # || [ "$output" == 'Thu Jan  1 01:46:40 UTC 2043' ]
 }
 
 @test 'June 13th, 1977' {
@@ -31,12 +32,14 @@
   run bash gigasecond.sh '2015-01-24 22:00:00Z'
 
   [ "$status" -eq 0 ]
-  [ "$output" == 'Tue Oct 2 23:46:40 UTC 2046' ] || [ "$output" == 'Tue Oct  2 23:46:40 UTC 2046' ]
+  [ "$output" == 'Tue Oct 2 23:46:40 UTC 2046' ] 
+  #|| [ "$output" == 'Tue Oct  2 23:46:40 UTC 2046' ]
 }
 
 @test 'Time with day rollover' {
   run bash gigasecond.sh '2015-01-24 23:59:59Z'
 
   [ "$status" -eq 0 ]
-  [ "$output" == 'Wed Oct 3 01:46:39 UTC 2046' ] || [ "$output" == 'Wed Oct  3 01:46:39 UTC 2046' ]
+  [ "$output" == 'Wed Oct 3 01:46:39 UTC 2046' ] 
+  #|| [ "$output" == 'Wed Oct  3 01:46:39 UTC 2046' ]
 }

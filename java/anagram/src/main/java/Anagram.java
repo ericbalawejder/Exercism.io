@@ -71,7 +71,6 @@ public class Anagram {
         if (word.length() != wordToCheck.length() || suffixContainsUpperCaseLetter(word, wordToCheck)) {
             return false;
         } else {
-            
             char[] characterArray1 = word.toLowerCase().toCharArray();
             char[] characterArray2 = wordToCheck.toLowerCase().toCharArray();
 
