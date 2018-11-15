@@ -39,8 +39,8 @@ final class Matrix {
     private int getColumnMin(final int column) {
         return values
             .stream()
-            .map(row -> row.get(column))
-            .min(Integer::compareTo)
+            .mapToInt(row -> row.get(column))
+            .min()
             .orElseThrow(() -> new IllegalArgumentException("Column cannot be empty"));
     }
 }
