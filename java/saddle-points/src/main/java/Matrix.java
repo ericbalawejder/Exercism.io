@@ -1,9 +1,8 @@
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Set;
-
-import java.util.Arrays;
 
 final class Matrix {
 
@@ -20,11 +19,16 @@ final class Matrix {
             return result;
         }
 
+        List<Integer> columnMins = new ArrayList<>(values.get(0).size());
+        for (int column = 0; column < values.get(0).size(); column++) {
+            columnMins.add(getColumnMin(column));
+        }
+
         for (int row = 0; row < values.size(); row++) {
             for (int column = 0; column < values.get(0).size(); column++) {
                 final int coordinateValue = values.get(row).get(column);
 
-                if (coordinateValue == getRowMax(row) && coordinateValue == getColumnMin(column)) {
+                if (coordinateValue == getRowMax(row) && coordinateValue == columnMins.get(column)) {
                     result.add(new MatrixCoordinate(row, column));
                 }
             }
