@@ -1,10 +1,10 @@
 import java.util.Collections;
+import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
 
-final class Matrix {
+class Matrix {
 
     private final List<List<Integer>> values;
 
