@@ -1,8 +1,10 @@
-import java.util.Collections;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 
 class Matrix {
 
@@ -19,10 +21,11 @@ class Matrix {
             return result;
         }
 
-        List<Integer> columnMins = new ArrayList<>(values.get(0).size());
-        for (int column = 0; column < values.get(0).size(); column++) {
-            columnMins.add(getColumnMin(column));
-        }
+        List<Integer> columnMins = IntStream
+            .range(0, values.get(0).size())
+            .map(column -> getColumnMin(column))
+            .boxed()
+            .collect(Collectors.toList());
 
         for (int row = 0; row < values.size(); row++) {
             for (int column = 0; column < values.get(0).size(); column++) {
