@@ -9,7 +9,7 @@ final class Matrix {
     private final List<List<Integer>> values;
 
     Matrix(final List<List<Integer>> values) {
-        this.values = values;
+        this.values = new ArrayList<List<Integer>>(values);
     }
 
     Set<MatrixCoordinate> getSaddlePoints() {
