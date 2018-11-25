@@ -1,4 +1,3 @@
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +17,7 @@ public class PythagoreanTripletTest {
         assertEquals(expected, actual);
     }
 
-    @Ignore("Remove to run test")
+    //@Ignore("Remove to run test")
     @Test
     public void shouldCalculateProduct() {
         PythagoreanTriplet triplet = new PythagoreanTriplet(3, 4, 5);
@@ -27,21 +26,21 @@ public class PythagoreanTripletTest {
         assertEquals(expected, actual);
     }
 
-    @Ignore("Remove to run test")
+    //@Ignore("Remove to run test")
     @Test
     public void testIsPythagoreanOK() {
         PythagoreanTriplet triplet = new PythagoreanTriplet(3, 4, 5);
         assertTrue(triplet.isPythagorean());
     }
 
-    @Ignore("Remove to run test")
+    //@Ignore("Remove to run test")
     @Test
     public void testIsPythagoreanFail() {
         PythagoreanTriplet triplet = new PythagoreanTriplet(5, 6, 7);
         assertFalse(triplet.isPythagorean());
     }
 
-    @Ignore("Remove to run test")
+    //@Ignore("Remove to run test")
     @Test
     public void shouldMakeTripletsUpToTen() {
         List<Long> actual
@@ -57,7 +56,7 @@ public class PythagoreanTripletTest {
         assertEquals(expected, actual);
     }
 
-    @Ignore("Remove to run test")
+    //@Ignore("Remove to run test")
     @Test
     public void shouldMakeTripletsElevenToTwenty() {
         List<Long> actual
@@ -74,7 +73,7 @@ public class PythagoreanTripletTest {
         assertEquals(expected, actual);
     }
 
-    @Ignore("Remove to run test")
+    //@Ignore("Remove to run test")
     @Test
     public void shouldMakeTripletsAndFilterOnSum() {
         List<Long> actual
