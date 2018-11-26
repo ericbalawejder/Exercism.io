@@ -4,25 +4,25 @@ public class PythagoreanTriplet {
     private int b;
     private int c;
 
-    PythagoreanTriplet(int a, int b, int c) {
+    public PythagoreanTriplet(int a, int b, int c) {
         this.a = a;
         this.b = b;
         this.c = c;
     }
 
-    int calculateSum() {
+    public int calculateSum() {
         return a + b + c;
     }
 
-    long calculateProduct() {
+    public long calculateProduct() {
         return a * b * c;
     }
 
-    boolean isPythagorean() {
+    public boolean isPythagorean() {
         return Math.pow(a, 2) + Math.pow(b, 2) == Math.pow(c, 2);
     }
 
-    static PythagoreanTripletBuilder makeTripletsList() {
+    public static PythagoreanTripletBuilder makeTripletsList() {
         return new PythagoreanTripletBuilder();
     }
 

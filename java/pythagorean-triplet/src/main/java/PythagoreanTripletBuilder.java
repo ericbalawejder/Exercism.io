@@ -1,27 +1,27 @@
 import java.util.List;
 import java.util.ArrayList;
 
-class PythagoreanTripletBuilder {
-    int lower = 1;
-    int upper;
-    Integer sum;
+public class PythagoreanTripletBuilder {
+    private int lower = 1;
+    private int upper;
+    private Integer sum;
 
-    PythagoreanTripletBuilder withFactorsGreaterThanOrEqualTo(int lower) {
+    public PythagoreanTripletBuilder withFactorsGreaterThanOrEqualTo(int lower) {
         this.lower = lower;
         return this;
     }
 
-    PythagoreanTripletBuilder withFactorsLessThanOrEqualTo(int upper) {
+    public PythagoreanTripletBuilder withFactorsLessThanOrEqualTo(int upper) {
         this.upper = upper;
         return this;
     }
 
-    PythagoreanTripletBuilder thatSumTo(int sum) {
+    public PythagoreanTripletBuilder thatSumTo(int sum) {
         this.sum = sum;
         return this;
     }
 
-    int gcd(int a, int b) {
+    private int gcd(int a, int b) {
         if (b == 0) {
             return a;
         } else {
@@ -29,7 +29,7 @@ class PythagoreanTripletBuilder {
         }
     }
 
-    List<PythagoreanTriplet> build() {
+    public List<PythagoreanTriplet> build() {
         List<PythagoreanTriplet> results = new ArrayList<>();
 
         for (int n = 1; n <= Math.sqrt(upper); n++) {
