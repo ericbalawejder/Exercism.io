@@ -1,12 +1,4 @@
-import java.util.List;
-import java.util.ArrayList;
-
 public class PythagoreanTriplet {
-
-    public static void main(String...args) {
-        PythagoreanTriplet triple = new PythagoreanTriplet(3, 4, 5);
-        System.out.println(triple.pythagorean(50, 100));
-    }
 
     private int a;
     private int b;
@@ -37,38 +29,5 @@ public class PythagoreanTriplet {
     @Override
     public String toString() {
         return a + " " + b + " " + c;
-    }
-
-    //--------------------- For testing only ----------------------//
-
-    int gcd(int a, int b) {
-        if (b == 0) {
-            return a;
-        } else {
-            return gcd(b, a % b);
-        }
-    }
-
-    List<PythagoreanTriplet> pythagorean(int lower, int upper) {
-        List<PythagoreanTriplet> results = new ArrayList<>();
-
-        for (int n = 1; n <= Math.sqrt(upper); n++) {
-            for (int m = n + 1; m <= Math.sqrt(upper); m++) {
-                if (gcd(m, n) == 1 && !(m % 2 != 0 && n % 2 != 0)) {
-
-                    for (int k = 1; k <= upper / 5; k++) {
-                        int a = k * ((int) (Math.pow(m, 2) - Math.pow(n, 2)));
-                        int b = k * 2 * m * n;
-                        int c = k * ((int) (Math.pow(m, 2) + Math.pow(n, 2)));
-                        
-                        PythagoreanTriplet triplet = new PythagoreanTriplet(a, b, c);
-                        if (a >= lower && b >= lower && c <= upper) {
-                            results.add(triplet);
-                        }
-                    }
-                }
-            }
-        }
-        return results;
     }
 }
