@@ -38,19 +38,15 @@ public class Flattener {
     }
 
     List<Object> flatten(List<?> nestedList) {
-        List<Object> flatList = new ArrayList<>();
-        flatten(nestedList, flatList);
-        return flatList;
+        return flattenToStream(nestedList)
+                .filter(element -> element != null)
+                .collect(Collectors.toList());
     }
 
-    private void flatten(List<?> nestedList, List<Object> flatList) {
-        for (Object element : nestedList) {
-            if (element instanceof List<?>) {
-                flatten((List<?>) element, flatList);
-            } else if (element != null) {
-                flatList.add(element);
-            }
-        }
+    private Stream<Object> flattenToStream(List<?> nestedList) {
+        return nestedList.stream()
+                .flatMap(element -> element instanceof List<?> ?
+                    flattenToStream((List<?>) element) : Stream.of(element));
     }
 
     private static List<Object> a(Object... a) {
