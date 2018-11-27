@@ -1,9 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
-
-import java.util.LinkedList;
-import java.util.List;
-
+import java.util.stream.Stream;
+import java.util.stream.Collectors;
 import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 
@@ -22,7 +20,7 @@ public class Flattener {
                         asList("one"),
                         asList(3, 4),
                         singletonList(singletonList(singletonList(2))),
-                        asList(asList("two", 'd', "5656")),
+                        asList(asList("two", 'd', "5656", null)),
                         asList("three", "three:two", "three:three", "three:four"));
 
         List<Object> treeList = a(a(1), 2, a(a(3, 4), 5), a(a(a())), a(a(a(6))), 7, 8, a());
