@@ -1,24 +1,18 @@
 import java.util.Map;
-import java.util.HashMap;
-import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class WordCount {
 
     Map<String, Integer> phrase(String sentence) {
-        Map<String, Integer> wordCountHash = new HashMap<>();
 
-        String[] wordArray = Arrays.stream(sentence
-                .toLowerCase()
+        Map<String, Integer> wordCountMap = Stream.of(sentence
                 .replaceAll("[^a-zA-Z0-9\\'\\s]|\\B'|'\\B", " ")
+                .toLowerCase()
                 .trim()
                 .split("\\s+"))
-                .toArray(String[]::new);
-
-        for (String word : wordArray) {
-            Integer count = wordCountHash.get(word);
-            wordCountHash.put(word, count == null ? 1 : count + 1);
-        }
-        return wordCountHash;
+                .collect(Collectors.toMap(key -> key, value -> 1, Integer::sum));
+        return wordCountMap;
     }
 
 }
