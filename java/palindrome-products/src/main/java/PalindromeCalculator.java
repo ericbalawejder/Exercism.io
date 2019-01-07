@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.SortedMap;
@@ -12,7 +13,7 @@ class PalindromeCalculator {
 
         if (start > end) {
             throw new IllegalArgumentException(
-                    "invalid input: min is " + start + " and max is " + end);
+                    String.format("invalid input: min is %d and max is %d", start, end));
         } else {
             for (int i = start; i <= end; i++) {
                 for (int j = i; j <= end; j++) {
@@ -34,9 +35,9 @@ class PalindromeCalculator {
         }
         if (palindromes.isEmpty()) {
             throw new NoSuchElementException(
-                    "no palindrome with factors in the range " + start + " to " + end);
+                    String.format("no palindrome with factors in the range %d to %d", start, end));
         }
-        return palindromes;
+        return Collections.unmodifiableSortedMap(palindromes);
     }
 
     private boolean isPalindrome(long number) {
