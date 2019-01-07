@@ -10,10 +10,6 @@ dependencies {
     testCompile "junit:junit:4.12"
 }
 
-dependencies {
-    compile group: 'com.google.guava', name: 'guava', version: '23.0'
-}
-
 test {
     testLogging {
         exceptionFormat = 'full'

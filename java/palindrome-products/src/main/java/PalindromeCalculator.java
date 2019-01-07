@@ -1,37 +1,49 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import com.google.common.collect.LinkedHashMultimap;
-import com.google.common.collect.Multimap;
+import java.util.NoSuchElementException;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 class PalindromeCalculator {
-    
-    public static void main(String[] args) {
-        PalindromeCalculator palindromeCalculator = new PalindromeCalculator();
-        System.out.println(palindromeCalculator.getPalindromeProductsWithFactors(10, 99));
-    }
 
-    Multimap<Long, List<Integer>> getPalindromeProductsWithFactors(int start, int end) {
-        Multimap<Long, List<Integer>> palindromes = LinkedHashMultimap.create();
-        
-        for (int i = start; i <= end; i++) {
-            for (int j = i; j <= end; j++) {
-                Long product = (long) (i * j);
-                if (isPalindrome(product))
-                {
-                    palindromes.put(product, Arrays.asList(i, j));
+    SortedMap<Long, List<List<Integer>>> getPalindromeProductsWithFactors(int start, int end) {
+        SortedMap<Long, List<List<Integer>>> palindromes = new TreeMap<>();
+
+        if (start > end) {
+            throw new IllegalArgumentException(
+                    "invalid input: min is " + start + " and max is " + end);
+        } else {
+            for (int i = start; i <= end; i++) {
+                for (int j = i; j <= end; j++) {
+                    Long product = (long) (i * j);
+                    if (isPalindrome(product))
+                    {
+                        List<List<Integer>> factors = new ArrayList<>();
+                        if (palindromes.containsKey(product)) {
+                            factors.addAll(palindromes.get(product));
+                            factors.add(Arrays.asList(i, j));
+                            palindromes.put(product, factors);
+                        } else {
+                            factors.add(Arrays.asList(i, j));
+                            palindromes.put(product, factors);
+                        }
+                    }
                 }
             }
         }
-        // return the last <key, values> pair!!!
+        if (palindromes.isEmpty()) {
+            throw new NoSuchElementException(
+                    "no palindrome with factors in the range " + start + " to " + end);
+        }
         return palindromes;
     }
 
     private boolean isPalindrome(long number) {
-        return number == reverseInt(number);
+        return number == reverseNumber(number);
     }
 
-    private long reverseInt(long number) {
+    private long reverseNumber(long number) {
         long reversedNumber = 0L;
 
         while (number != 0) {
