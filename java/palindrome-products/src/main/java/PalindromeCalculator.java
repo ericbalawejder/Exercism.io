@@ -18,8 +18,7 @@ class PalindromeCalculator {
             for (int i = start; i <= end; i++) {
                 for (int j = i; j <= end; j++) {
                     Long product = (long) (i * j);
-                    if (isPalindrome(product))
-                    {
+                    if (isPalindrome(product)) {
                         List<List<Integer>> factors = new ArrayList<>();
                         if (palindromes.containsKey(product)) {
                             factors.addAll(palindromes.get(product));
