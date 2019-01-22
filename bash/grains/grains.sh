@@ -8,13 +8,16 @@ fi
 
 case "$1" in
   [1-9]|[1-5][0-9]|6[0-4])
-    echo 2^$(($1-1)) | bc
+    printf "%u\n" $((1 << $1 - 1))
+    #echo 2^$(($1-1)) | bc
     ;;
   total)
-    echo 2^64 - 1 | bc
+    printf "%u\n" $((2**64-1))
+    #printf "%llu\n" $((((1 << 64)) - 1))
+    #echo 2^64 - 1 | bc
     ;;
   *)
-    echo 'Error: invalid input'
+    echo "Error: invalid input"
     exit 1
     ;;
 esac
