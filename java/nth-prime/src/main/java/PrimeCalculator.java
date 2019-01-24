@@ -1,36 +1,20 @@
-import java.util.TreeSet;
+import java.util.stream.IntStream;
+import static java.util.stream.IntStream.iterate;
 
-// Given a number n, determine what the nth prime is.
-class PrimeCalculator
-{
-    int nth(int nth)
-    {
-        if (nth < 1)
-        {
-            throw new IllegalArgumentException();
-        }
-        TreeSet<Integer> set = new TreeSet<>();
-        int number = 2;
-        while (set.size() != nth)
-        {
-            if (isPrime(number))
-            {
-                set.add(number);
-            }
-            number++;
-        }
-        return set.last();
+class PrimeCalculator {
+
+    int nth(int nth) {
+        return iterate(2, i -> i + 1)
+                .filter(this::isPrime)
+                .limit(nth)
+                .max()
+                .orElseThrow(() -> new IllegalArgumentException());
     }
 
-    boolean isPrime(int number)
-    {
-        for (int n = 2; n <= Math.sqrt(number); n++)
-        {
-            if (number % n == 0)
-            {
-                return false;
-            }
-        }
-        return true;
+    boolean isPrime(int number) {
+        return IntStream
+                .rangeClosed(2, (int) Math.sqrt(number))
+                .noneMatch(n -> number % n == 0);
     }
+
 }
