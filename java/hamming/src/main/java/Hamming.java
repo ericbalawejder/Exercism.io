@@ -16,7 +16,7 @@ public class Hamming {
         return IntStream
                 .range(0, leftStrand.length())
                 .map(i -> leftStrand.charAt(i) != rightStrand.charAt(i) ? 1 : 0)
-                .sum();
+                .reduce(0, Integer::sum);
     }
 
 }
