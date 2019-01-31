@@ -14,8 +14,3 @@ class Sieve
 
   attr_accessor :number
 end
-
-module BookKeeping
-  # Where the version number matches the one in the test.
-  VERSION = 1
-end
