@@ -1,10 +1,11 @@
 import java.util.Set;
 import java.util.HashSet;
+import java.util.Random;
 
 class Robot {
 
     private String name;
-    private static final int ROBOT_PERMUTATIONS = 26 * 26 * 900;
+    private static final int ROBOT_PERMUTATIONS = 26 * 26 * 1000;
     private static Set<Robot> robots = new HashSet<>();
 
     Robot() {
@@ -27,11 +28,21 @@ class Robot {
         return randomInteger.toString();
     }
 
+    String threeRandomIntegers() {
+        String integers = "";
+        Random random = new Random();
+        for (int i = 0; i < 3; i++) {
+            int randomInteger = random.nextInt(10);
+            integers += randomInteger;
+        }
+        return integers;
+    }
+
     String twoRandomCharacters() {
         String characters = "";
+        Random random = new Random();
         for (int i = 0; i < 2; i++) {
-            Character randomCharacter = // x <= character < x + y
-                    (char) ((int) 'A' + (int) (Math.random() * (int) ('Z' - 'A' + 1)));
+            char randomCharacter = (char) (random.nextInt(26) + 'A');
             characters += randomCharacter;
         }
         return characters;
