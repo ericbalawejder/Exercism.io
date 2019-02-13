@@ -4,18 +4,17 @@ import java.util.HashSet;
 class Robot {
 
     private String name;
+    private static final int ROBOT_PERMUTATIONS = 26 * 26 * 900;
     private static Set<Robot> robots = new HashSet<>();
 
-    public static void main(String... args) {
-
-        for (int i = 0; i < 70; i++) {
-            Robot robot = new Robot();
-        }
-        System.out.println(robots);
-    }
-
     Robot() {
-        this.name = generateRobotName();
+        do {
+            if (robots.size() < ROBOT_PERMUTATIONS) {
+                this.name = generateRobotName();
+            } else {
+                throw new RuntimeException("Maximum number of Robots has been reached.");
+            }
+        } while (isCollision(this));
         robots.add(this);
     }
 
@@ -31,7 +30,7 @@ class Robot {
     String twoRandomCharacters() {
         String characters = "";
         for (int i = 0; i < 2; i++) {
-            Character randomCharacter = 
+            Character randomCharacter = // x <= character < x + y
                     (char) ((int) 'A' + (int) (Math.random() * (int) ('Z' - 'A' + 1)));
             characters += randomCharacter;
         }
@@ -40,7 +39,9 @@ class Robot {
 
     Robot reset() {
         robots.remove(this);
-        this.name = generateRobotName();
+        do {
+            this.name = generateRobotName();
+        } while (isCollision(this));
         robots.add(this);
         return this;
     }
@@ -49,13 +50,43 @@ class Robot {
         return name;
     }
 
-    boolean isCollision() {
-        return robots.contains(this);
+    static boolean isCollision(Robot robot) {
+        return robots.contains(robot);
     }
 
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Robot other = (Robot) obj;
+        if (name == null) {
+            if (other.name != null) {
+                return false;
+            }
+        } else if (!name.equals(other.name)) {
+            return false;
+        }
+        return true;
     }
 
 }
