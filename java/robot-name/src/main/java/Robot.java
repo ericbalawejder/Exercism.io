@@ -20,12 +20,7 @@ class Robot {
     }
 
     String generateRobotName() {
-        return twoRandomCharacters() + threeDigitRandomInteger();
-    }
-
-    String threeDigitRandomInteger() {
-        Integer randomInteger = 100 + (int) (Math.random() * 900);
-        return randomInteger.toString();
+        return twoRandomCharacters() + threeRandomIntegers();
     }
 
     String threeRandomIntegers() {
