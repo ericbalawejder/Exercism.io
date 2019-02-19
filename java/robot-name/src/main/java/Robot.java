@@ -1,10 +1,12 @@
 import java.util.Set;
+import java.util.stream.Collectors;
 import java.util.HashSet;
 import java.util.Random;
 
 class Robot {
 
     private String name;
+    private Random random = new Random();
     private static final int ROBOT_PERMUTATIONS = 26 * 26 * 1000;
     private static Set<Robot> robots = new HashSet<>();
 
@@ -20,27 +22,7 @@ class Robot {
     }
 
     String generateRobotName() {
-        return twoRandomCharacters() + threeRandomIntegers();
-    }
-
-    String threeRandomIntegers() {
-        String integers = "";
-        Random random = new Random();
-        for (int i = 0; i < 3; i++) {
-            int randomInteger = random.nextInt(10);
-            integers += randomInteger;
-        }
-        return integers;
-    }
-
-    String twoRandomCharacters() {
-        String characters = "";
-        Random random = new Random();
-        for (int i = 0; i < 2; i++) {
-            char randomCharacter = (char) (random.nextInt(26) + 'A');
-            characters += randomCharacter;
-        }
-        return characters;
+        return randomLetters(2) + randomNumbers(3);
     }
 
     Robot reset() {
@@ -56,7 +38,21 @@ class Robot {
         return name;
     }
 
-    static boolean isCollision(Robot robot) {
+    private String randomLetters(int quantity) {
+        return random.ints('A', 'Z' + 1)
+                .limit(quantity)
+                .mapToObj(i -> Character.toString((char)i))
+                .collect(Collectors.joining());
+    }
+
+    private String randomNumbers(int quantity) {
+        return random.ints(0, 10)
+                .limit(quantity)
+                .mapToObj(Integer::toString)
+                .collect(Collectors.joining());
+    }
+
+    private static boolean isCollision(Robot robot) {
         return robots.contains(robot);
     }
 
