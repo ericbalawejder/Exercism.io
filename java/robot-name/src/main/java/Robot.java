@@ -1,5 +1,6 @@
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -22,7 +23,8 @@ class Robot {
     }
 
     String generateRobotName() {
-        return randomLetters(2) + randomNumbers(3);
+        return Stream.of(randomLetters(2), randomNumbers(3))
+                .collect(Collectors.joining());
     }
 
     Robot reset() {
