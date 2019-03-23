@@ -9,29 +9,20 @@ class Robot {
     private String name;
     private Random random = new Random();
     private static final int ROBOT_PERMUTATIONS = 26 * 26 * 1000;
-    private static Set<Robot> robots = new HashSet<>();
+    private static final Set<Robot> robots = new HashSet<>();
 
     Robot() {
-        do {
-            if (robots.size() < ROBOT_PERMUTATIONS) {
-                this.name = generateRobotName();
-            } else {
-                throw new RuntimeException("Maximum number of Robots has been reached.");
-            }
-        } while (isCollision(this));
-        robots.add(this);
-    }
-
-    String generateRobotName() {
-        return Stream.of(randomLetters(2), randomNumbers(3))
-                .collect(Collectors.joining());
+        if (robots.size() >= ROBOT_PERMUTATIONS) {
+            throw new RuntimeException("Maximum number of Robots has been reached.");
+        } else {
+            generateRobotName();
+            robots.add(this);
+        }
     }
 
     Robot reset() {
         robots.remove(this);
-        do {
-            this.name = generateRobotName();
-        } while (isCollision(this));
+        generateRobotName();
         robots.add(this);
         return this;
     }
@@ -40,22 +31,24 @@ class Robot {
         return name;
     }
 
-    private String randomLetters(int quantity) {
-        return random.ints('A', 'Z' + 1)
-                .limit(quantity)
-                .mapToObj(i -> Character.toString((char)i))
-                .collect(Collectors.joining());
-    }
-
-    private String randomNumbers(int quantity) {
-        return random.ints(0, 10)
-                .limit(quantity)
-                .mapToObj(Integer::toString)
-                .collect(Collectors.joining());
+    private void generateRobotName() {
+        do {
+            this.name = Stream.of(randomLetters(2), randomNumbers(3))
+                    .collect(Collectors.joining());
+        } while (isCollision(this));
     }
 
     private static boolean isCollision(Robot robot) {
         return robots.contains(robot);
+    }
+
+    private String randomLetters(int quantity) {
+        return random.ints('A', 'Z' + 1).limit(quantity).mapToObj(i -> Character.toString((char) i))
+                .collect(Collectors.joining());
+    }
+
+    private String randomNumbers(int quantity) {
+        return random.ints(0, 10).limit(quantity).mapToObj(Integer::toString).collect(Collectors.joining());
     }
 
     @Override
