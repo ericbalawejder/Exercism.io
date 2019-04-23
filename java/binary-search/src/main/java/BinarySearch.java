@@ -9,9 +9,8 @@ class BinarySearch {
         List<Integer> sortedList = Collections.unmodifiableList(Arrays.asList(1, 3, 4, 6, 8, 9, 11));
 
         BinarySearch searchDeezNutz = new BinarySearch(sortedList);
-        searchDeezNutz.indexOf(82);
 
-        System.out.println(searchDeezNutz.indexOf(8));
+        System.out.println(searchDeezNutz.indexOf(11));
     }
 
     private final List<Integer> sortedList;
@@ -20,7 +19,7 @@ class BinarySearch {
         this.sortedList = Collections.unmodifiableList(new ArrayList<Integer>(sortedList));
     }
 
-    int indexOf(int target) throws ValueNotFoundException {
+    int indexOf1(int target) throws ValueNotFoundException {
         int high = sortedList.size() - 1;
         int low = 0;
 
@@ -37,4 +36,26 @@ class BinarySearch {
         }
         throw new ValueNotFoundException("Value not in array");
     }
+
+    int indexOf(int target) throws ValueNotFoundException {
+        int low = 0;
+        int high = sortedList.size() - 1;
+        return indexOf(target, low, high);
+    }
+
+    private int indexOf(int target, int low, int high) throws ValueNotFoundException {
+        if (low > high) {
+            throw new ValueNotFoundException("Value not in array");
+        }
+        int mid = (low + high) / 2;
+
+        if (target == sortedList.get(mid)) {
+            return mid;
+        } else if (target < sortedList.get(mid)) {
+            return indexOf(target, low, mid - 1);
+        } else {
+            return indexOf(target, mid + 1, high);
+        }
+    }
+
 }
