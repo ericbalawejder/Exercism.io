@@ -1,4 +1,4 @@
-import java.util.Optional;
+import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -6,21 +6,27 @@ class PigLatinTranslator {
 
     public static void main(String... args) {
         PigLatinTranslator pigLatinTranslator = new PigLatinTranslator();
-        System.out.println(pigLatinTranslator.pigLatin("my"));
-        System.out.println(pigLatinTranslator.pigLatin("rhythm"));
+        // System.out.println(pigLatinTranslator.pigLatin("my"));
+        // System.out.println(pigLatinTranslator.pigLatin("rhythm"));
+        System.out.println(pigLatinTranslator.translate("deez nuts ha got em"));
+
     }
 
     String translate(String phrase) {
-        return pigLatin(phrase);
+        String[] words = phrase.replaceAll("[^\\w]", " ").split("\\s+");
+        return Arrays.stream(words)
+                .map(word -> pigLatin(word))
+                .collect(Collectors.joining(" "));
     }
 
     private boolean isAVowel(char c) {
-        return (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'A' || c == 'E' || c == 'I' || c == 'O'
-                || c == 'U');
+        return (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u'
+                || c == 'A' || c == 'E' || c == 'I' || c == 'O' || c == 'U');
     }
 
-    private boolean isAVowelWithOutU(char c) {
-        return (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'A' || c == 'E' || c == 'I' || c == 'O');
+    private boolean isAVowelExcludingU(char c) {
+        return (c == 'a' || c == 'e' || c == 'i' || c == 'o'
+                || c == 'A' || c == 'E' || c == 'I' || c == 'O');
     }
 
     private boolean beginsWithAVowel(String word) {
@@ -57,12 +63,14 @@ class PigLatinTranslator {
                 suffix = word.substring(i, word.length());
                 break;
             } else if (containsQU(word)) {
-                // handle "queen" - > eenquay
-                if (isAVowelWithOutU(word.charAt(i))) {
+                if (isAVowelExcludingU(word.charAt(i))) {
                     prefix = word.substring(0, i);
                     suffix = word.substring(i, word.length());
                     break;
                 }
+            } else if (secondLetterInTwoLetterWordContainsY(word)) {
+                prefix = word.substring(0, i);
+                suffix = word.substring(i, word.length());
             }
         }
         return Stream.of(suffix, prefix, "ay").collect(Collectors.joining());

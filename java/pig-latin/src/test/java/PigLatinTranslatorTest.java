@@ -132,13 +132,13 @@ public class PigLatinTranslatorTest {
         assertEquals("ythmrhay", pigLatinTranslator.translate("rhythm"));
     }
 
-    @Ignore("Remove to run test")
+    //@Ignore("Remove to run test")
     @Test
     public void testYAsSecondLetterInTwoLetterWord() {
         assertEquals("ymay", pigLatinTranslator.translate("my"));
     }
 
-    @Ignore("Remove to run test")
+    //@Ignore("Remove to run test")
     @Test
     public void testAWholePhrase() {
         assertEquals("ickquay astfay unray", pigLatinTranslator.translate("quick fast run"));
