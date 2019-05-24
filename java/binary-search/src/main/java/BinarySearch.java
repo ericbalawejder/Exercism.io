@@ -11,9 +11,7 @@ class BinarySearch<T extends Comparable<? super T>> {
     }
 
     int indexOf(T target) throws ValueNotFoundException {
-        int low = 0;
-        int high = sortedList.size() - 1;
-        return indexOf(target, low, high);
+        return indexOf(target, 0, sortedList.size() - 1);
     }
 
     private int indexOf(T target, int low, int high) throws ValueNotFoundException {
@@ -21,11 +19,14 @@ class BinarySearch<T extends Comparable<? super T>> {
             throw new ValueNotFoundException("Value not in array");
         }
         int mid = (low + high) / 2;
-        int comparisionValue = target.compareTo(sortedList.get(mid));
 
-        return comparisionValue < 0 
-                ? indexOf(target, low, mid - 1) : comparisionValue == 0 
-                ? mid : indexOf(target, mid + 1, high);
+        if (target.compareTo(sortedList.get(mid)) == 0) {
+            return mid;
+        } else if (target.compareTo(sortedList.get(mid)) < 0) {
+            return indexOf(target, low, mid - 1);
+        } else {
+            return indexOf(target, mid + 1, high);
+        }
     }
 
 }
