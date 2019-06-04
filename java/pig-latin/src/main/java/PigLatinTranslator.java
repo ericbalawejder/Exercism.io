@@ -1,18 +1,11 @@
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 class PigLatinTranslator {
-
-    public static void main(String... args) {
-        PigLatinTranslator pigLatinTranslator = new PigLatinTranslator();
-        System.out.println(pigLatinTranslator.pigLatin("wzxqurjik"));
-        System.out.println(pigLatinTranslator.pigLatin("my"));
-        //System.out.println(pigLatinTranslator.pigLatin("yttria"));
-        //System.out.println(pigLatinTranslator.translate("rhythm deez nuts your chin"));
-    }
 
     String translate(String phrase) {
         String[] words = phrase.replaceAll("[^\\w]", " ").split("\\s+");
@@ -22,23 +15,25 @@ class PigLatinTranslator {
     }
 
     String pigLatin(String word) {
-        //Pattern vowel = Pattern.compile("^([aeiou]|y[^aeiou]|xr)");
-        //Pattern consonants = Pattern.compile("^([^aeiou]?qu|[^aeiouy]+|y(?=[aeiou]))");
-        Pattern vowel = Pattern.compile("^([aeiou]|yt|xr)");
-        Pattern consonants = Pattern.compile("^([^aeiou]*?qu|[^aeiouy]+|y(?=[aeiou])|[^aeiou]+)");
+        Pattern beginsWithVowel = Pattern.compile("^([aeiou]|yt|xr)");
+        Pattern beginsWithConsonant = Pattern.compile(
+                "^([^aeiou]*?qu|[^aeiouy]+|y(?=[aeiou])|[^aeiou]+)");
 
-        String pigLatin = "";
+        Optional<String> prefix = Optional.empty();
+        Optional<String> suffix = Optional.empty();
 
-        if (vowel.matcher(word).find()) {
+        if (beginsWithVowel.matcher(word).find()) {
             return Stream.of(word, "ay").collect(Collectors.joining());
         }
         else {
-            Matcher matches = consonants.matcher(word);
+            Matcher matches = beginsWithConsonant.matcher(word);
             if (matches.find()) {
-                pigLatin = word.substring(matches.end()) + matches.group();
-                //System.out.println(matches.end() + "  " + matches.group());
+                prefix = Optional.of(matches.group());
+                suffix = Optional.of(word.substring(matches.end()));
             }
         }
-        return Stream.of(pigLatin, "ay").collect(Collectors.joining());
+        return Stream.of(suffix.orElse(""), prefix.orElse(""), "ay")
+                .collect(Collectors.joining());
     }
+
 }
