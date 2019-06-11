@@ -1,47 +1,83 @@
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
-import java.util.Arrays;
-import java.util.Collection;
 
 import static org.junit.Assert.assertEquals;
 
-/*
- * version: 1.0.0
- */
-@RunWith(Parameterized.class)
 public class ScrabbleScoreTest {
 
-    private String scrabbleInput;
-    private int scrabbleScore;
-
-    @Parameterized.Parameters(name = "{index}: expected scrabble score for \"{0}\" to be {1}")
-    public static Collection<Object[]> data() {
-        return Arrays.asList(new Object[][]{
-                {"a", 1},
-                {"A", 1},
-                {"f", 4},
-                {"at", 2},
-                {"zoo", 12},
-                {"street", 6},
-                {"quirky", 22},
-                {"OxyphenButazone", 41},
-                {"pinata", 8},
-                {"", 0},
-                {"abcdefghijklmnopqrstuvwxyz", 87},
-        });
-    }
-
-    public ScrabbleScoreTest(String scrabbleInput, int scrabbleScore) {
-        this.scrabbleInput = scrabbleInput;
-        this.scrabbleScore = scrabbleScore;
-    }
-
     @Test
-    public void test() {
-        Scrabble scrabble = new Scrabble(scrabbleInput);
-        assertEquals(scrabbleScore, scrabble.getScore());
+    public void testALowerCaseLetter() {
+        Scrabble scrabble = new Scrabble("a");
+        assertEquals(1, scrabble.getScore());
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testAUpperCaseLetter() {
+        Scrabble scrabble = new Scrabble("A");
+        assertEquals(1, scrabble.getScore());
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testAValuableLetter() {
+        Scrabble scrabble = new Scrabble("f");
+        assertEquals(4, scrabble.getScore());
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testAShortWord() {
+        Scrabble scrabble = new Scrabble("at");
+        assertEquals(2, scrabble.getScore());
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testAShortValuableWord() {
+        Scrabble scrabble = new Scrabble("zoo");
+        assertEquals(12, scrabble.getScore());
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testAMediumWord() {
+        Scrabble scrabble = new Scrabble("street");
+        assertEquals(6, scrabble.getScore());
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testAMediumValuableWord() {
+        Scrabble scrabble = new Scrabble("quirky");
+        assertEquals(22, scrabble.getScore());
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testALongMixCaseWord() {
+        Scrabble scrabble = new Scrabble("OxyphenButazone");
+        assertEquals(41, scrabble.getScore());
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testAEnglishLikeWord() {
+        Scrabble scrabble = new Scrabble("pinata");
+        assertEquals(8, scrabble.getScore());
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testAnEmptyInput() {
+        Scrabble scrabble = new Scrabble("");
+        assertEquals(0, scrabble.getScore());
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testEntireAlphabetAvailable() {
+        Scrabble scrabble = new Scrabble("abcdefghijklmnopqrstuvwxyz");
+        assertEquals(87, scrabble.getScore());
     }
 
 }
