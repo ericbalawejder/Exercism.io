@@ -2,44 +2,33 @@
 
 `Two-fer` or `2-fer` is short for two for one. One for you and one for me.
 
+Given a name, return a string with the message:
+
+```text
+One for X, one for me.
 ```
-"One for X, one for me."
+
+Where X is the given name.
+
+However, if the name is missing, return the string:
+
+```text
+One for you, one for me.
 ```
 
-When X is a name or "you".
+Here are some examples:
 
-If the given name is "Alice", the result should be "One for Alice, one for me."
-If no name is given, the result should be "One for you, one for me."
+|Name    |String to return 
+|:-------|:------------------
+|Alice   |One for Alice, one for me. 
+|Bob     |One for Bob, one for me.
+|        |One for you, one for me.
+|Zaphod  |One for Zaphod, one for me.
 
+# Tips
 
-## Test-Driven Development
-
-As programmers mature, they eventually want to test their code.
-
-Here at Exercism we simulate [Test-Driven
-Development](http://en.wikipedia.org/wiki/Test-driven_development) (TDD), where
-you write your tests before writing any functionality. The simulation comes in
-the form of a pre-written test suite, which will signal that you have solved
-the problem.
-
-It will also provide you with a safety net to explore other solutions without
-breaking the functionality.
-
-### A typical TDD workflow on Exercism:
-
-1. Run the test file and pick one test that's failing.
-2. Write some code to fix the test you picked.
-3. Re-run the tests to confirm the test is now passing.
-4. Repeat from step 1.
-5. Submit your solution (`exercism submit /path/to/file`)
-
-## Instructions
-
-Submissions are encouraged to be general, within reason. Having said that, it's
-also important not to over-engineer a solution.
-
-It's important to remember that the goal is to make code as expressive and
-readable as we can.
+Before you start, make sure you understand how to write code that can pass the test cases.
+For more context, check out this [tutorial](https://github.com/exercism/java/blob/master/exercises/hello-world/TUTORIAL.md).
 
 Most Java exercises include multiple test cases. These cases are structured to
 support a useful process known as
@@ -81,18 +70,33 @@ steps:
 5. Return to step 1 until no tests are skipped and all tests pass!
 
 
-To run the tests:
+## Setup
+
+Go through the setup instructions for Java to install the necessary
+dependencies:
+
+[https://exercism.io/tracks/java/installation](https://exercism.io/tracks/java/installation)
+
+# Running the tests
+
+You can run all the tests for an exercise by entering the following in your
+terminal:
 
 ```sh
 $ gradle test
 ```
 
-For more detailed info about the Java track see the [help page](http://exercism.io/languages/java).
+> Use `gradlew.bat` if you're on Windows
+
+In the test suites all tests but the first have been skipped.
+
+Once you get a test passing, you can enable the next one by removing the
+`@Ignore("Remove to run test")` annotation.
 
 ## Source
 
-This is an exercise to introduce users to basic programming constructs, just after hello World. [https://en.wikipedia.org/wiki/Two-fer](https://en.wikipedia.org/wiki/Two-fer)
+[https://github.com/exercism/problem-specifications/issues/757](https://github.com/exercism/problem-specifications/issues/757)
 
 ## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.
-
+It's possible to submit an incomplete solution so you can see how others have
+completed the exercise.
