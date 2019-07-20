@@ -1,40 +1,35 @@
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 class NucleotideCounter {
 
     private final String strand;
-    private final Map<Character, Integer> counts;
 
     NucleotideCounter(String strand) {
         if (!strand.matches("[ACGT]*")) {
             throw new IllegalArgumentException();
         }
         this.strand = strand;
-        this.counts = createCountsMap();
     }
 
     Map<Character, Integer> nucleotideCounts() {
+        
+        Map<Character, Integer> counts = IntStream.range(0, strand.length())
+                .mapToObj(i -> strand.charAt(i))
+                .collect(Collectors.groupingBy(Function.identity(),
+                        Collectors.reducing(0, value -> 1, Integer::sum)));
 
-        Character[] nucleotides = strand.chars()
-                .mapToObj(ch -> (char) ch)
-                .toArray(Character[]::new);
-
-        for (Character nucleotide : nucleotides) {
-            if (counts.containsKey(nucleotide)) {
-                Integer count = counts.get(nucleotide);
-                counts.put(nucleotide, count + 1);
-            }
-        }
-        return counts;
+        return Collections.unmodifiableMap(defaultMap(counts));
     }
 
-    private Map<Character, Integer> createCountsMap() {
-        Map<Character, Integer> counts = new HashMap<>();
-        counts.put('A', 0);
-        counts.put('C', 0);
-        counts.put('G', 0);
-        counts.put('T', 0);
+    private Map<Character, Integer> defaultMap(Map<Character, Integer> counts) {
+        counts.putIfAbsent('A', 0);
+        counts.putIfAbsent('C', 0);
+        counts.putIfAbsent('G', 0);
+        counts.putIfAbsent('T', 0);
         return counts;
     }
 
