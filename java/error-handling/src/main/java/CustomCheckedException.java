@@ -1,8 +1,9 @@
 class CustomCheckedException extends Exception {
 
-  CustomCheckedException() {}
+    CustomCheckedException() {
+    }
 
-  CustomCheckedException(String message) {
-    super(message);
-  }
+    CustomCheckedException(String message) {
+        super(message);
+    }
 }

@@ -1,8 +1,9 @@
 class CustomUncheckedException extends RuntimeException {
 
-  CustomUncheckedException() {}
+    CustomUncheckedException() {
+    }
 
-  CustomUncheckedException(String message) {
-    super(message);
-  }
+    CustomUncheckedException(String message) {
+        super(message);
+    }
 }
