@@ -1,7 +1,2 @@
-class TriangleException extends Exception
-{
-    public TriangleException(String message)
-    {
-        super(message);
-    }
+class TriangleException extends Exception {
 }
