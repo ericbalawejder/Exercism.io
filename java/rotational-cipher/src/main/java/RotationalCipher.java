@@ -10,18 +10,16 @@ class RotationalCipher {
 
     String rotate(String data) {
         return data.chars()
-                .mapToObj(x -> (char) x)
-                .map(this::rotateCharacter)
-                .map(x -> x.toString())
+                .mapToObj(this::rotateCharacter)
                 .collect(Collectors.joining());
     }
 
-    private char rotateCharacter(char character) {
+    private String rotateCharacter(int character) {
         if (!Character.isAlphabetic((int) character)) {
-            return character;
+            return Character.toString(character);
         } else {
             int letterCase = Character.isUpperCase(character) ? 'A' : 'a';
-            return (char) (((int) character + shiftKey - letterCase) % 26 + letterCase);
+            return Character.toString((((int) character + shiftKey - letterCase) % 26 + letterCase));
         }
     }
 
