@@ -1,16 +1,11 @@
-import java.util.concurrent.locks.ReadWriteLock;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-
 class BankAccount {
 
     private int balance;
     private boolean open;
-    private final ReadWriteLock lock;
 
     BankAccount() {
         this.balance = 0;
         this.open = false;
-        this.lock = new ReentrantReadWriteLock();
     }
 
     void open() {
@@ -21,37 +16,22 @@ class BankAccount {
         this.open = false;
     }
 
-    int getBalance() throws BankAccountActionInvalidException {
+    synchronized int getBalance() throws BankAccountActionInvalidException {
         isOpen();
-        lock.readLock().lock();
-        try {
-            return this.balance;
-        } finally {
-            lock.readLock().unlock();
-        }
+        return this.balance;
     }
 
-    void deposit(int amount) throws BankAccountActionInvalidException {
+    synchronized void deposit(int amount) throws BankAccountActionInvalidException {
         isOpen();
         isValidAmount(amount);
-        lock.writeLock().lock();
-        try {
-            setBalance(this.balance + amount);
-        } finally {
-            lock.writeLock().unlock();
-        }
+        setBalance(this.balance + amount);
     }
 
-    void withdraw(int amount) throws BankAccountActionInvalidException {
+    synchronized void withdraw(int amount) throws BankAccountActionInvalidException {
         isOpen();
         isValidAmount(amount);
         sufficientFunds(amount);
-        lock.writeLock().lock();
-        try {
-            setBalance(this.balance - amount);
-        } finally {
-            lock.writeLock().unlock();
-        }
+        setBalance(this.balance - amount);
     }
 
     private void setBalance(int balance) {
