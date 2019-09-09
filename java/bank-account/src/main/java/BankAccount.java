@@ -1,12 +1,7 @@
 class BankAccount {
 
-    private int balance;
-    private boolean open;
-
-    BankAccount() {
-        this.balance = 0;
-        this.open = false;
-    }
+    private int balance = 0;
+    private boolean open = false;
 
     void open() {
         this.open = true;
@@ -30,7 +25,7 @@ class BankAccount {
     synchronized void withdraw(int amount) throws BankAccountActionInvalidException {
         isOpen();
         isValidAmount(amount);
-        sufficientFunds(amount);
+        hasSufficientFunds(amount);
         setBalance(this.balance - amount);
     }
 
@@ -44,7 +39,7 @@ class BankAccount {
         }
     }
 
-    private void sufficientFunds(int amount) throws BankAccountActionInvalidException {
+    private void hasSufficientFunds(int amount) throws BankAccountActionInvalidException {
         if (this.balance == 0) {
             throw new BankAccountActionInvalidException("Cannot withdraw money from an empty account");
         } else if (this.balance < amount) {
