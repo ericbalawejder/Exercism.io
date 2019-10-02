@@ -1,3 +1,1 @@
-fun twofer(name: String = "you"): String {
-    return "One for $name, one for me."
-}
+fun twofer(name: String = "you"): String = "One for $name, one for me."
