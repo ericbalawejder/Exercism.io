@@ -1,4 +1,7 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.OptionalLong;
 import java.util.stream.LongStream;
 
 class PrimeFactorsCalculator {
