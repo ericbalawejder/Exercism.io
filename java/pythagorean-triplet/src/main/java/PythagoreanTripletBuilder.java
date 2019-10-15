@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -50,6 +51,6 @@ public class PythagoreanTripletBuilder {
                 }
             }
         }
-        return results;
+        return Collections.unmodifiableList(results);
     }
 }
