@@ -1,10 +1,9 @@
 import java.util.stream.IntStream;
-import static java.util.stream.IntStream.iterate;
 
 class PrimeCalculator {
 
     int nth(int nth) {
-        return iterate(2, i -> i + 1)
+        return IntStream.iterate(2, i -> i + 1)
                 .filter(this::isPrime)
                 .limit(nth)
                 .max()
