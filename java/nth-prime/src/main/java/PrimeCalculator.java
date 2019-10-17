@@ -11,8 +11,7 @@ class PrimeCalculator {
     }
 
     boolean isPrime(int number) {
-        return IntStream
-                .rangeClosed(2, (int) Math.sqrt(number))
+        return number > 1 && IntStream.rangeClosed(2, (int) Math.sqrt(number))
                 .noneMatch(n -> number % n == 0);
     }
 
