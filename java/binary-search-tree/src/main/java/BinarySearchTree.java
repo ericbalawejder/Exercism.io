@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -7,29 +6,11 @@ import java.util.Queue;
 
 class BinarySearchTree<T extends Comparable<? super T>> {
 
-    public static void main(String... args) {
-        BinarySearchTree<String> binarySearchTree = new BinarySearchTree<>();
-
-        List<String> expected = Collections.unmodifiableList(Arrays.asList("1", "2", "3", "5", "6", "7"));
-
-        List<String> treeData = Collections.unmodifiableList(Arrays.asList("2", "1", "3", "6", "7", "5"));
-
-        treeData.forEach(binarySearchTree::insert);
-
-        List<String> actual = binarySearchTree.getAsSortedList();
-
-        System.out.println(binarySearchTree.getAsSortedList());
-        System.out.println(binarySearchTree.getAsLevelOrderList());
-
-        System.out.println(binarySearchTree);
-        System.out.println(binarySearchTree.getRoot());
-    }
-
     private Node<T> root;
     private int size = 0;
 
     void insert(T value) {
-        if (root == null) {
+        if (isEmpty()) {
             root = new Node<>(value);
         } else {
             insert(root, value);
@@ -50,18 +31,22 @@ class BinarySearchTree<T extends Comparable<? super T>> {
     }
 
     Node<T> getRoot() {
-        return clone(root);
+        return deepCopy(root);
     }
 
     int getSize() {
         return this.size;
     }
 
-    private Node<T> clone(Node<T> node) {
+    private boolean isEmpty() {
+        return root == null;
+    }
+
+    private Node<T> deepCopy(Node<T> node) {
         if(node == null) {
             return null;
         } else {
-            return new Node<>(node.data, clone(node.left), clone(node.right));
+            return new Node<>(node.data, deepCopy(node.left), deepCopy(node.right));
         }
     }
 
@@ -99,15 +84,15 @@ class BinarySearchTree<T extends Comparable<? super T>> {
             return;
         }
         final Queue<Node<T>> queue = new LinkedList<>();
-        Node<T> myNode;
+        Node<T> rootNode;
         Node<T> left;
         Node<T> right;
         queue.add(node);
         while (!queue.isEmpty()) {
-            myNode = queue.poll();
-            list.add(myNode.getData());
-            left = myNode.getLeft();
-            right = myNode.getRight();
+            rootNode = queue.poll();
+            list.add(rootNode.getData());
+            left = rootNode.getLeft();
+            right = rootNode.getRight();
             if (left != null) {
                 queue.add(left);
             }
@@ -124,9 +109,8 @@ class BinarySearchTree<T extends Comparable<? super T>> {
                 ", size = " + size +
                 '}';
     }
-    //------------------------------------------------------------
 
-    static class Node<T> {
+    protected static class Node<T> {
         private T data;
         private Node<T> left;
         private Node<T> right;
@@ -142,7 +126,6 @@ class BinarySearchTree<T extends Comparable<? super T>> {
         }
 
         Node<T> getLeft() {
-            //return clone(left);
             return left;
         }
 
@@ -151,7 +134,6 @@ class BinarySearchTree<T extends Comparable<? super T>> {
         }
 
         Node<T> getRight() {
-            //return clone(right);
             return right;
         }
 
@@ -173,12 +155,5 @@ class BinarySearchTree<T extends Comparable<? super T>> {
                     '}';
         }
 
-        private Node<T> clone(Node<T> node) {
-            if(node == null) {
-                return null;
-            } else {
-                return new Node<>(node.data, clone(node.left), clone(node.right));
-            }
-        }
     }
 }
