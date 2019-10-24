@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -6,6 +7,25 @@ import java.util.Queue;
 
 class BinarySearchTree<T extends Comparable<? super T>> {
 
+    public static void main(String... args) {
+        BinarySearchTree<String> binarySearchTree = new BinarySearchTree<>();
+
+        List<String> expected = Collections.unmodifiableList(Arrays.asList("1", "2", "3", "5", "6", "7"));
+
+        List<String> treeData = Collections.unmodifiableList(Arrays.asList("2", "1", "3", "6", "7", "5"));
+
+        treeData.forEach(binarySearchTree::insert);
+
+        List<String> actual = binarySearchTree.getAsSortedList();
+
+        System.out.println(binarySearchTree.getAsSortedList());
+        System.out.println(binarySearchTree.getAsLevelOrderList());
+
+        System.out.println(binarySearchTree);
+        System.out.println(binarySearchTree.getRoot());
+        System.out.println(binarySearchTree.root.getRight());
+    }
+    
     private Node<T> root;
     private int size = 0;
 
