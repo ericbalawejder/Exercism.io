@@ -2,17 +2,19 @@ import java.util.Map;
 import java.util.HashMap;
 
 class Scrabble {
-    private static final Map<String, Integer> characterMap = new HashMap<>();
+
     private final String word;
 
+    private static final Map<Integer, Integer> characterMap = new HashMap<>();
+
     static {
-        characterMap.put("AEIOULNRST", 1);
-        characterMap.put("DG", 2);
-        characterMap.put("BCMP", 3);
-        characterMap.put("FHVWY", 4);
-        characterMap.put("K", 5);
-        characterMap.put("JX", 8);
-        characterMap.put("QZ", 10);
+        "AEIOULNRST".chars().forEach(c -> characterMap.put(c, 1));
+        "DG".chars().forEach(c -> characterMap.put(c, 2));
+        "BCMP".chars().forEach(c -> characterMap.put(c, 3));
+        "FHVWY".chars().forEach(c -> characterMap.put(c, 4));
+        "K".chars().forEach(c -> characterMap.put(c, 5));
+        "JX".chars().forEach(c -> characterMap.put(c, 8));
+        "QZ".chars().forEach(c -> characterMap.put(c, 10));
     }
 
     Scrabble(String word) {
@@ -20,18 +22,10 @@ class Scrabble {
     }
 
     int getScore() {
-
-        int scrabbleScore = 0;
-
-        for (int i = 0; i < word.length(); i++) {
-            String letter = String.valueOf(word.charAt(i));
-            for (Map.Entry<String, Integer> characterMapEntry : characterMap.entrySet()) {
-                if (characterMapEntry.getKey().contains(letter.toUpperCase())) {
-                    scrabbleScore += characterMapEntry.getValue();
-                }
-            }
-        }
-        return scrabbleScore;
+        return word.chars()
+                .map(Character::toUpperCase)
+                .map(letter -> characterMap.getOrDefault(letter, 0))
+                .sum();
     }
 
 }
