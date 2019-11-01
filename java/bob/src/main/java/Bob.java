@@ -1,20 +1,34 @@
 class Bob {
 
     String hey(String remark) {
-        String response;
-        if (remark.equals(remark.toUpperCase()) && !remark.equals(remark.toLowerCase()) &&
-                remark.matches(".*\\?$")) {
-            response = "Calm down, I know what I'm doing!";
-        } else if (remark.equals(remark.toUpperCase()) && !remark.equals(remark.toLowerCase())) {
-            response = "Whoa, chill out!";
-        } else if (remark.trim().matches(".*\\?$")) {
-            response = "Sure.";
-        } else if (remark.matches("\\s*")) {
-            response = "Fine. Be that way!";
+        if (isYellingAQuestion(remark)) {
+            return  "Calm down, I know what I'm doing!";
+        } else if (isYelling(remark)) {
+            return  "Whoa, chill out!";
+        } else if (isAQuestion(remark)) {
+            return "Sure.";
+        } else if (isSayingAnything(remark)) {
+            return  "Fine. Be that way!";
         } else {
-            response = "Whatever.";
+            return "Whatever.";
         }
-        return response;
+    }
+
+    private boolean isAQuestion(String remark) {
+        return remark.trim().endsWith("?");
+    }
+
+    private boolean isYelling(String remark) {
+        return remark.equals(remark.toUpperCase()) && !remark.equals(remark.toLowerCase());
+    }
+
+    private boolean isYellingAQuestion(String remark) {
+        return remark.equals(remark.toUpperCase()) && !remark.equals(remark.toLowerCase()) &&
+                remark.endsWith("?");
+    }
+
+    private boolean isSayingAnything(String remark) {
+        return remark.matches("\\s*");
     }
 
 }
