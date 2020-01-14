@@ -15,11 +15,10 @@ class LargestSeriesProductCalculator {
 
         if (numberOfDigits > inputNumber.length()) {
             throw new IllegalArgumentException(
-                    "Series length must be less than or equal to the length " + "of the string to search.");
+                    "Series length must be less than or equal to the length of the string to search.");
         } else if (numberOfDigits < 0) {
             throw new IllegalArgumentException("Series length must be non-negative.");
         } else {
-
             int numberOfSubstrings = inputNumber.length() - numberOfDigits + 1;
 
             for (int i = 0; i < numberOfSubstrings; i++) {
