@@ -7,7 +7,7 @@ class PrimeCalculator {
                 .filter(this::isPrime)
                 .limit(nth)
                 .max()
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     boolean isPrime(int number) {
