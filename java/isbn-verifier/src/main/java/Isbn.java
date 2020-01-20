@@ -30,5 +30,5 @@ public class Isbn {
         }
         return sumOfProduct % 11 == 0;
     }
-    
+
 }
