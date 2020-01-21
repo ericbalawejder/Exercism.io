@@ -1,14 +1,14 @@
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Map;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 
 class ResistorColorDuo {
 
     private static final Map<String, String> RESISTORS;
     static {
-        Map<String, String> resistorColor = new LinkedHashMap<>();
+        Map<String, String> resistorColor = new HashMap<>();
         resistorColor.put("black", "0");
         resistorColor.put("brown", "1");
         resistorColor.put("red", "2");
@@ -23,13 +23,11 @@ class ResistorColorDuo {
     }
 
     int value(String[] colors) {
-        String value = Arrays.stream(colors)
+        return Integer.parseInt(Arrays.stream(colors)
                 .filter(s -> RESISTORS.containsKey(s))
                 .map(s -> RESISTORS.get(s))
                 .limit(2)
-                .collect(Collectors.joining());
-
-        return Integer.parseInt(value);
+                .collect(Collectors.joining()));
     }
 
 }
