@@ -1,28 +1,31 @@
+import java.util.Collections;
 import java.util.Map;
 import java.util.LinkedHashMap;
 
 class ResistorColor {
 
-    private static final Map<String, Integer> resistor = new LinkedHashMap<>();
+    private static final Map<String, Integer> RESISTORS;
     static {
-        resistor.put("black", 0);
-        resistor.put("brown", 1);
-        resistor.put("red", 2);
-        resistor.put("orange", 3);
-        resistor.put("yellow", 4);
-        resistor.put("green", 5);
-        resistor.put("blue", 6);
-        resistor.put("violet", 7);
-        resistor.put("grey", 8);
-        resistor.put("white", 9);
+        Map<String, Integer> resistorColor = new LinkedHashMap<>();
+        resistorColor.put("black", 0);
+        resistorColor.put("brown", 1);
+        resistorColor.put("red", 2);
+        resistorColor.put("orange", 3);
+        resistorColor.put("yellow", 4);
+        resistorColor.put("green", 5);
+        resistorColor.put("blue", 6);
+        resistorColor.put("violet", 7);
+        resistorColor.put("grey", 8);
+        resistorColor.put("white", 9);
+        RESISTORS = Collections.unmodifiableMap(resistorColor);
     }
 
     int colorCode(String color) {
-        return resistor.get(color);
+        return RESISTORS.get(color);
     }
 
     String[] colors() {
-        return resistor.keySet().toArray(new String[resistor.keySet().size()]);
+        return RESISTORS.keySet().toArray(new String[RESISTORS.keySet().size()]);
     }
 
 }
