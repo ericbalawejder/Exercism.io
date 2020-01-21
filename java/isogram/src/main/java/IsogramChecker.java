@@ -34,5 +34,5 @@ class IsogramChecker {
         }
         return true;
     }
-    
+
 }
