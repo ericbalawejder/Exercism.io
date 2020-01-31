@@ -1,80 +1,83 @@
-import java.util.Map;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 // Using the fundamental theorem of arithmetic, determine if two words are anagrams.
-// Limited by int product.
+// Limited by long memory.
 class Anagram {
 
     private final String word;
-    private final static Map<Character, Integer> characterMapping = new HashMap<Character, Integer>();
+    private final long primeFactorization;
+    private final static Map<Character, Long> PRIMES;
     
-    // Map characters to prime numbers.
     static {
-    characterMapping.put('a', 2);
-    characterMapping.put('b', 3);
-    characterMapping.put('c', 5);
-    characterMapping.put('d', 7);
-    characterMapping.put('e', 11);
-    characterMapping.put('f', 13);
-    characterMapping.put('g', 17);
-    characterMapping.put('h', 19);
-    characterMapping.put('i', 23);
-    characterMapping.put('j', 29);
-    characterMapping.put('k', 31);
-    characterMapping.put('l', 37);
-    characterMapping.put('m', 41);
-    characterMapping.put('n', 43);
-    characterMapping.put('o', 47);
-    characterMapping.put('p', 53);
-    characterMapping.put('q', 59);
-    characterMapping.put('r', 61);
-    characterMapping.put('s', 67);
-    characterMapping.put('t', 71);
-    characterMapping.put('u', 73);
-    characterMapping.put('v', 79);
-    characterMapping.put('w', 83);
-    characterMapping.put('x', 89);
-    characterMapping.put('y', 97);
-    characterMapping.put('z', 101);
+        Map<Character, Long> charactersToPrimeNumber = new HashMap<>();
+        charactersToPrimeNumber.put('a', 2L);
+        charactersToPrimeNumber.put('b', 3L);
+        charactersToPrimeNumber.put('c', 5L);
+        charactersToPrimeNumber.put('d', 7L);
+        charactersToPrimeNumber.put('e', 11L);
+        charactersToPrimeNumber.put('f', 13L);
+        charactersToPrimeNumber.put('g', 17L);
+        charactersToPrimeNumber.put('h', 19L);
+        charactersToPrimeNumber.put('i', 23L);
+        charactersToPrimeNumber.put('j', 29L);
+        charactersToPrimeNumber.put('k', 31L);
+        charactersToPrimeNumber.put('l', 37L);
+        charactersToPrimeNumber.put('m', 41L);
+        charactersToPrimeNumber.put('n', 43L);
+        charactersToPrimeNumber.put('o', 47L);
+        charactersToPrimeNumber.put('p', 53L);
+        charactersToPrimeNumber.put('q', 59L);
+        charactersToPrimeNumber.put('r', 61L);
+        charactersToPrimeNumber.put('s', 67L);
+        charactersToPrimeNumber.put('t', 71L);
+        charactersToPrimeNumber.put('u', 73L);
+        charactersToPrimeNumber.put('v', 79L);
+        charactersToPrimeNumber.put('w', 83L);
+        charactersToPrimeNumber.put('x', 89L);
+        charactersToPrimeNumber.put('y', 97L);
+        charactersToPrimeNumber.put('z', 101L);
+        PRIMES = Collections.unmodifiableMap(charactersToPrimeNumber);
     }
 
     Anagram(String word) {
+        this.primeFactorization = primeFactorization(word);
         this.word = word;
     }
 
-    List<String> match(List<String> possibleMatchesList) {
-        List<String> matchingList = new ArrayList<>();
-        for (String possibleMatch : possibleMatchesList) {
-            if (isAnagram(possibleMatch)) {
-                matchingList.add(possibleMatch);
-            }
-        }
-        return matchingList;
+    List<String> match(List<String> possibleMatches) {
+        return possibleMatches.stream()
+                .filter(this::isAnagram)
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    boolean isAnagram(String wordToCheck) {
-        int product1 = 1;
-        int product2 = 1;
+    long getPrimeFactorization() {
+        return this.primeFactorization;
+    }
 
-        if (word.length() != wordToCheck.length() || wordEqualsSelf(word, wordToCheck)) {
+    String getWord() {
+        return this.word;
+    }
+
+    private boolean isAnagram(String word) {
+        if (getWord().length() != word.length() || isSameWord(getWord(), word)) {
             return false;
-        } else {
-            char[] characterArray1 = word.toLowerCase().toCharArray();
-            char[] characterArray2 = wordToCheck.toLowerCase().toCharArray();
-
-            for (int i = 0; i < word.length(); i++) {
-                int value1 = characterMapping.get(characterArray1[i]);
-                product1 *= value1;
-                int value2 = characterMapping.get(characterArray2[i]);
-                product2 *= value2;
-            }
         }
-        return product1 == product2; 
+        return getPrimeFactorization() == primeFactorization(word);
     }
 
-    boolean wordEqualsSelf(String word1, String word2) {
+    private long primeFactorization(String word) {
+        return word.chars()
+                .mapToObj(c -> (char) c)
+                .map(Character::toLowerCase)
+                .map(PRIMES::get)
+                .reduce(1L, (p1, p2) -> p1 * p2);
+    }
+
+    private boolean isSameWord(String word1, String word2) {
         return word1.toLowerCase().equals(word2.toLowerCase());
     }
 
