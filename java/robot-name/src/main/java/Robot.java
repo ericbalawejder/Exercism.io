@@ -43,12 +43,17 @@ class Robot {
     }
 
     private String randomLetters(int quantity) {
-        return random.ints('A', 'Z' + 1).limit(quantity).mapToObj(i -> Character.toString((char) i))
+        return random.ints('A', 'Z' + 1)
+                .limit(quantity)
+                .mapToObj(i -> Character.toString((char) i))
                 .collect(Collectors.joining());
     }
 
     private String randomNumbers(int quantity) {
-        return random.ints(0, 10).limit(quantity).mapToObj(Integer::toString).collect(Collectors.joining());
+        return random.ints(0, 10)
+                .limit(quantity)
+                .mapToObj(Integer::toString)
+                .collect(Collectors.joining());
     }
 
     @Override
