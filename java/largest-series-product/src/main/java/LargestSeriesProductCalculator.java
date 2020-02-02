@@ -12,7 +12,6 @@ class LargestSeriesProductCalculator {
     }
 
     long calculateLargestProductForSeriesLength(int numberOfDigits) {
-
         if (numberOfDigits > inputNumber.length()) {
             throw new IllegalArgumentException(
                     "Series length must be less than or equal to the length of the string to search.");
@@ -20,13 +19,17 @@ class LargestSeriesProductCalculator {
             throw new IllegalArgumentException("Series length must be non-negative.");
         } else {
             return IntStream.range(0, inputNumber.length() - numberOfDigits + 1)
-                    .mapToLong(i -> inputNumber.substring(i, i + numberOfDigits)
-                            .chars()
-                            .map(x -> x - '0')
-                            .reduce(1, (total, current) -> total * current))
+                    .mapToLong(i -> calculateProduct(i, numberOfDigits))
                     .max()
                     .getAsLong();
         }
+    }
+
+    private long calculateProduct(int index, int numberOfDigits) {
+        return inputNumber.substring(index, index + numberOfDigits)
+                .chars()
+                .map(Character::getNumericValue)
+                .reduce(1, (a, b) -> a * b);
     }
 
 }
