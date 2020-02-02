@@ -1,3 +1,5 @@
+import java.util.stream.IntStream;
+
 class LargestSeriesProductCalculator {
     private final String inputNumber;
 
@@ -11,30 +13,20 @@ class LargestSeriesProductCalculator {
 
     long calculateLargestProductForSeriesLength(int numberOfDigits) {
 
-        long largestProduct = 0;
-
         if (numberOfDigits > inputNumber.length()) {
             throw new IllegalArgumentException(
                     "Series length must be less than or equal to the length of the string to search.");
         } else if (numberOfDigits < 0) {
             throw new IllegalArgumentException("Series length must be non-negative.");
         } else {
-            int numberOfSubstrings = inputNumber.length() - numberOfDigits + 1;
-
-            for (int i = 0; i < numberOfSubstrings; i++) {
-
-                String substring = inputNumber.substring(i, i + numberOfDigits);
-                long product = 1;
-
-                for (int j = 0; j < numberOfDigits; j++) {
-                    product *= Long.parseLong(substring.substring(j, j + 1));
-                }
-                if (product > largestProduct) {
-                    largestProduct = product;
-                }
-            }
+            return IntStream.range(0, inputNumber.length() - numberOfDigits + 1)
+                    .mapToLong(i -> inputNumber.substring(i, i + numberOfDigits)
+                            .chars()
+                            .map(x -> x - '0')
+                            .reduce(1, (total, current) -> total * current))
+                    .max()
+                    .getAsLong();
         }
-        return largestProduct;
     }
 
 }
