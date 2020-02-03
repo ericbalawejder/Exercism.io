@@ -1,14 +1,11 @@
-enum Plant
-{
+enum Plant {
     VIOLETS,
     RADISHES,
     CLOVER,
     GRASS;
 
-    static Plant getPlant(char plantCode)
-    {
-        switch (plantCode)
-        {
+    static Plant getPlant(char plantCode) {
+        switch (plantCode) {
             case 'G':
                 return GRASS;
             case 'C':
@@ -18,7 +15,6 @@ enum Plant
             case 'V':
                 return VIOLETS;
         }
-
         return null;
     }
 }
