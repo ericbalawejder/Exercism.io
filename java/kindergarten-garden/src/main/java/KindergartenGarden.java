@@ -1,36 +1,33 @@
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 class KindergartenGarden {
 
-    private final String garden;
-    private final int newRowLocation;
-    private static final int PLANTS_PER_STUDENT_PER_ROW = 2;
-    private static final String[] DEFAULT_STUDENTS = {
+    private final char[][] cups;
+    private final static List<String> STUDENTS = List.of(
             "Alice", "Bob", "Charlie", "David",
             "Eve", "Fred", "Ginny", "Harriet",
             "Ileana", "Joseph", "Kincaid", "Larry"
-    };
+    );
 
     KindergartenGarden(String garden) {
-        this.garden = garden;
-        newRowLocation = garden.indexOf('\n') + 1;
+        cups = Arrays.stream(garden.split("\n"))
+                .map(row -> row.toCharArray())
+                .toArray(char[][]::new);
     }
 
     List<Plant> getPlantsOfStudent(String student) {
-        List<Plant> plants = new ArrayList<>();
-        int studentPlantsIndex = Arrays.binarySearch(DEFAULT_STUDENTS, student) * PLANTS_PER_STUDENT_PER_ROW;
+        int cup1 = STUDENTS.indexOf(student) * 2;
+        int cup2 = cup1 + 1;
 
-        for (int i = studentPlantsIndex; i < studentPlantsIndex + PLANTS_PER_STUDENT_PER_ROW; i++) {
-            plants.add(Plant.getPlant(garden.charAt(i)));
-        }
-        for (int i = newRowLocation + studentPlantsIndex;
-             i < newRowLocation + studentPlantsIndex + PLANTS_PER_STUDENT_PER_ROW; i++) {
-            plants.add(Plant.getPlant(garden.charAt(i)));
-        }
-        return Collections.unmodifiableList(plants);
+        return Arrays.stream(cups)
+                .map(it -> List.of(it[cup1], it[cup2]))
+                .flatMap(it -> it.stream())
+                .map(Plant::getPlant)
+                .collect(Collectors.collectingAndThen(
+                        Collectors.toList(), Collections::unmodifiableList));
     }
 
 }
