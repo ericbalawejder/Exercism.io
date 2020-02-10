@@ -24,8 +24,8 @@ class ResistorColorDuo {
 
     int value(String[] colors) {
         return Integer.parseInt(Arrays.stream(colors)
-                .filter(s -> RESISTORS.containsKey(s))
-                .map(s -> RESISTORS.get(s))
+                .filter(RESISTORS::containsKey)
+                .map(RESISTORS::get)
                 .limit(2)
                 .collect(Collectors.joining()));
     }
