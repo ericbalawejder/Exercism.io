@@ -6,19 +6,6 @@ class SimpleLinkedList<T> {
     private Node<T> head;
     private int size = 0;
 
-    public static void main(String[] args) {
-        SimpleLinkedList linkedList = new SimpleLinkedList();
-        linkedList.push("12");
-        linkedList.push("13");
-        linkedList.push("1");
-        linkedList.push("342");
-        System.out.println(linkedList);
-        linkedList.reverse();
-        System.out.println(linkedList);
-        linkedList.asArray(String.class);
-        System.out.println(linkedList);
-    }
-
     SimpleLinkedList() {
     }
 
@@ -66,12 +53,13 @@ class SimpleLinkedList<T> {
 
     T[] asArray(Class<T> componentType) {
         @SuppressWarnings("unchecked")
-        T[] array = (T[]) Array.newInstance(componentType, size);
-        int index = 0;
+        T[] array = (T[]) Array.newInstance(componentType, size());
         Node<T> current = head;
+        int index = 0;
         while (current != null) {
-            array[index++] = current.data;
+            Array.set(array, index, current.data);
             current = current.next;
+            index++;
         }
         return array;
     }
