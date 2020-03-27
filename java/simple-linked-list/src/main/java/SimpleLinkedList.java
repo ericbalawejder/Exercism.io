@@ -16,26 +16,22 @@ class SimpleLinkedList<T> {
     }
 
     void push(T value) {
-        Node<T> newNode = new Node<>(value);
+        this.head = new Node(value, this.head);
         this.size++;
-        if (head != null) {
-            newNode.next = head;
-        }
-        head = newNode;
     }
 
     T pop() {
-        if (head == null) {
+        if (this.head == null) {
             throw new NoSuchElementException("List is empty");
         }
-        T data = head.data;
-        head = head.next;
+        T data = this.head.data;
+        this.head = this.head.next;
         this.size--;
         return data;
     }
 
     void reverse() {
-        Node<T> current = head;
+        Node<T> current = this.head;
         Node<T> next;
         Node<T> previous = null;
         while (current != null) {
@@ -44,7 +40,7 @@ class SimpleLinkedList<T> {
             previous = current;
             current = next;
         }
-        head = previous;
+        this.head = previous;
     }
 
     int size() {
@@ -54,7 +50,7 @@ class SimpleLinkedList<T> {
     T[] asArray(Class<T> componentType) {
         @SuppressWarnings("unchecked")
         T[] array = (T[]) Array.newInstance(componentType, size());
-        Node<T> current = head;
+        Node<T> current = this.head;
         int index = 0;
         while (current != null) {
             Array.set(array, index, current.data);
@@ -67,8 +63,8 @@ class SimpleLinkedList<T> {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("[");
-        Node<T> current = head;
-        if (head != null) {
+        Node<T> current = this.head;
+        if (this.head != null) {
             while (current != null) {
                 builder.append(current.data).append(", ");
                 current = current.next;
@@ -83,8 +79,9 @@ class SimpleLinkedList<T> {
         private final T data;
         private Node<T> next;
 
-        Node(T data) {
+        Node(T data, Node next) {
             this.data = data;
+            this.next = next;
         }
     }
 
