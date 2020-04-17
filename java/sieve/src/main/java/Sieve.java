@@ -1,35 +1,28 @@
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Set;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
-// Sieve of Eratosthenes.
-class Sieve
-{
-    private final int maxPrime;
+class Sieve {
 
-    Sieve(int maxPrime)
-    {
-        this.maxPrime = maxPrime;
+    private final int limit;
+
+    Sieve(int limit) {
+        this.limit = limit;
     }
 
-    List<Integer> getPrimes()
-    {
-        List<Integer> primes = new ArrayList<>();
-        Set<Integer> set = new HashSet<>();
-        for (int i = 2; i <= maxPrime; i++)
-        {
-            if (!set.contains(i))
-            {
-                primes.add(i);
-            }
-            int multiple = i;
-            while (multiple <= maxPrime)
-            {
-                multiple += i;
-                set.add(multiple);
-            }
-        }
-        return primes;
+    List<Integer> getPrimes() {
+        Set<Integer> notPrime = new HashSet<>();
+
+        IntStream.rangeClosed(2, (int) Math.sqrt(limit))
+                .flatMap(x -> IntStream.iterate(x * x, n -> n <= limit, n -> x + n))
+                .forEach(notPrime::add);
+
+        return IntStream.rangeClosed(2, limit)
+                .filter(x -> !notPrime.contains(x))
+                .boxed()
+                .collect(Collectors.toUnmodifiableList());
     }
+
 }
