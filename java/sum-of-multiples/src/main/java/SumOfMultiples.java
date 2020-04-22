@@ -1,37 +1,28 @@
-// Given a number, find the sum of all the multiples of particular 
-// numbers up to but not including that number.
-import java.util.Set;
-import java.util.HashSet;
+import java.util.stream.IntStream;
 
-class SumOfMultiples
-{
-    private final int number;
-    private final int[] set;
-    
-    SumOfMultiples(int number, int[] set)
-    {
-        this.number = number;
-        this.set = set;
+class SumOfMultiples {
+
+    private final int sum;
+
+    SumOfMultiples(int number, int[] set) {
+        this.sum = computeSum(number, set);
     }
 
-    int getSum()
-    {
-        Set<Integer> setOfMultiples = new HashSet<>();
-        int sum = 0;
-        for (int i = 0; i < set.length; i++)
-        {
-            for (int j = 1; j < number; j++)
-            {
-                if (j % set[i] == 0)
-                {
-                    setOfMultiples.add(j);
-                }
-            }
-        }
-        for (Integer element : setOfMultiples)
-        {
-            sum += element;
-        }
-        return sum;
+    int getSum() {
+        return this.sum;
     }
+
+    private int computeSum(int number, int[] set) {
+        return IntStream.range(0, number)
+                .filter(i -> {
+                    for (int n: set) {
+                        if ((n > 0) && (i % n == 0)) {
+                            return true;
+                        }
+                    }
+                    return false;
+                })
+                .sum();
+    }
+
 }
