@@ -1,10 +1,11 @@
 import java.util.Collections;
 import java.util.Map;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 class TwelveDays {
-    private static final Map<Integer, String> song;
+    private static final Map<Integer, String> SONG;
 
     static {
         Map<Integer, String> days = new HashMap<>();
@@ -51,27 +52,21 @@ class TwelveDays {
             "nine Ladies Dancing, eight Maids-a-Milking, seven Swans-a-Swimming, " +
             "six Geese-a-Laying, five Gold Rings, four Calling Birds, three French " +
             "Hens, two Turtle Doves, and a Partridge in a Pear Tree.\n");
-        song = Collections.unmodifiableMap(new HashMap<>(days));
+        SONG = Collections.unmodifiableMap(new HashMap<>(days));
     }
 
     String verse(int verseNumber) {
-        return song.get(verseNumber);
+        return SONG.get(verseNumber);
     }
 
     String verses(int startVerse, int endVerse) {
-        StringBuilder lyrics = new StringBuilder();
-        for (int i = startVerse; i <= endVerse; i++) {
-            if (i == endVerse) {
-                lyrics.append(song.get(i));
-            } else {
-                lyrics.append(song.get(i)).append("\n");
-            }
-        }
-        return lyrics.toString();
+        return IntStream.rangeClosed(startVerse, endVerse)
+                .mapToObj(this::verse)
+                .collect(Collectors.joining("\n"));
     }
-    
+
     String sing() {
-        return verses(1, 12);
+        return verses(1, SONG.size());
     }
 
 }
