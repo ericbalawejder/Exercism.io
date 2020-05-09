@@ -1,18 +1,19 @@
-// Convert a phrase to its acronym.
-class Acronym
-{
+class Acronym {
     private final String phrase;
     
-    Acronym(String phrase)
-    {
-        this.phrase = phrase;
+    Acronym(String phrase) {
+        this.phrase = generateAcronym(phrase);
     }
 
-    String get()
-    {
-        // https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
-        // Removes every character which is not on a word boundary on it's left.
-        // Removes any character which is not a letter, including spaces.
-        return phrase.replaceAll("\\B.|\\P{L}", "").toUpperCase();
+    String get() {
+        return phrase;
     }
+
+    private String generateAcronym(String phrase) {
+        return phrase.replaceAll("[^a-zA-Z\\s-]", "")
+                .replaceAll("\\B.", "")
+                .replaceAll("\\s+|-", "")
+                .toUpperCase();
+    }
+
 }
