@@ -1,5 +1,4 @@
-// Check if a given ISBN-10 is valid.
-public class IsbnVerifier {
+class IsbnVerifier {
 
     boolean isValid(String stringToVerify) {
         String isbn = stringToVerify.replaceAll("-", "");
@@ -7,7 +6,6 @@ public class IsbnVerifier {
         if (isbn.length() != 10) {
             return false;
         }
-
         try {
             int sumOfProduct = 0;
 
@@ -15,7 +13,7 @@ public class IsbnVerifier {
                 int digit = Integer.parseInt(isbn.substring(i, i + 1));
                 sumOfProduct += ((10 - i) * digit);
             }
-            if (isbn.substring(9, 10).equals("X")) {
+            if (isbn.startsWith("X", 9)) {
                 sumOfProduct += 10;
             } else {
                 sumOfProduct += Integer.parseInt(isbn.substring(9, 10));

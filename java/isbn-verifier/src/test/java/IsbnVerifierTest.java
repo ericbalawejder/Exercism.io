@@ -1,4 +1,3 @@
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -19,69 +18,99 @@ public class IsbnVerifierTest {
         assertTrue(isbnVerifier.isValid("3-598-21508-8"));
     }
 
+    //@Ignore("Remove to run test")
     @Test
     public void invalidIsbnCheckDigit() {
         assertFalse(isbnVerifier.isValid("3-598-21508-9"));
     }
-    
-    @Test
-    public void IsbnCheck() {
-        assertFalse(isbnVerifier.isValid("0-008-21508-0"));
-    }
 
+    //@Ignore("Remove to run test")
     @Test
     public void validIsbnNumberWithCheckDigitOfTen() {
         assertTrue(isbnVerifier.isValid("3-598-21507-X"));
     }
 
+    //@Ignore("Remove to run test")
     @Test
     public void checkDigitIsACharacterOtherThanX() {
         assertFalse(isbnVerifier.isValid("3-598-21507-A"));
     }
 
+    //@Ignore("Remove to run test")
     @Test
     public void invalidCharacterInIsbn() {
-        assertFalse(isbnVerifier.isValid("3-598-2K507-0"));
+        assertFalse(isbnVerifier.isValid("3-598-P1581-X"));
     }
 
+    //@Ignore("Remove to run test")
     @Test
     public void xIsOnlyValidAsACheckDigit() {
         assertFalse(isbnVerifier.isValid("3-598-2X507-9"));
     }
 
+    //@Ignore("Remove to run test")
     @Test
     public void validIsbnWithoutSeparatingDashes() {
         assertTrue(isbnVerifier.isValid("3598215088"));
     }
 
+    //@Ignore("Remove to run test")
     @Test
     public void isbnWithoutSeparatingDashesAndXAsCheckDigit() {
         assertTrue(isbnVerifier.isValid("359821507X"));
     }
 
+    //@Ignore("Remove to run test")
     @Test
     public void isbnWithoutCheckDigitAndDashes() {
         assertFalse(isbnVerifier.isValid("359821507"));
     }
 
+    //@Ignore("Remove to run test")
     @Test
     public void tooLongIsbnAndNoDashes() {
         assertFalse(isbnVerifier.isValid("3598215078X"));
     }
 
+    //@Ignore("Remove to run test")
+    @Test
+    public void tooShortIsbn() {
+        assertFalse(isbnVerifier.isValid("00"));
+    }
+
+    //@Ignore("Remove to run test")
     @Test
     public void isbnWithoutCheckDigit() {
         assertFalse(isbnVerifier.isValid("3-598-21507"));
     }
 
-    @Test
-    public void tooLongIsbn() {
-        assertFalse(isbnVerifier.isValid("3-598-21507-XX"));
-    }
-
+    //@Ignore("Remove to run test")
     @Test
     public void checkDigitOfXShouldNotBeUsedForZero() {
         assertFalse(isbnVerifier.isValid("3-598-21515-X"));
     }
 
+    //@Ignore("Remove to run test")
+    @Test
+    public void emptyIsbn() {
+        assertFalse(isbnVerifier.isValid(""));
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void inputIsNineCharacters() {
+        assertFalse(isbnVerifier.isValid("134456729"));
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void invalidCharactersAreNotIgnored() {
+        assertFalse(isbnVerifier.isValid("3132P34035"));
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void inputIsTooLongButContainsAValidIsbn() {
+        assertFalse(isbnVerifier.isValid("98245726788"));
+    }
 }
