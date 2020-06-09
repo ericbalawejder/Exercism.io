@@ -6,21 +6,9 @@ public class IsbnVerifier {
 
     private static final String CHECK_DIGIT = "X";
     private static final int CHECK_DIGIT_VALUE = 10;
+
     private static final String PREFIX_978 = "978";
     private static final String PREFIX_979 = "979";
-
-    public static void main(String[] args) {
-        IsbnVerifier isbnVerifier = new IsbnVerifier();
-
-        for (long i = 9780000000000L; i <= 9799999999999L; i++) {
-            if (isbnVerifier.isValidIsbn13(String.valueOf(i))) {
-                String isbn = isbnVerifier.convertIsbn13ToIsbn10(String.valueOf(i));
-                if (isbn.endsWith("X")) {
-                    System.out.println(i + " -> " + isbn);
-                }
-            }
-        }
-    }
 
     boolean isValid(String stringToVerify) {
         final String isbn = stringToVerify.replace("-", "");
@@ -87,7 +75,6 @@ public class IsbnVerifier {
             throw new IllegalArgumentException("Not a valid ISBN-13 number.");
         }
         final String isbn = stringToConvert.replace("-", "");
-
         final String isbn10 = isbn.substring(3, isbn.length() - 1);
 
         final List<Integer> numbers = isbn10.chars()
