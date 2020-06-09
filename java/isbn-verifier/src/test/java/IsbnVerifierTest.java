@@ -2,6 +2,8 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
@@ -112,5 +114,99 @@ public class IsbnVerifierTest {
     @Test
     public void inputIsTooLongButContainsAValidIsbn() {
         assertFalse(isbnVerifier.isValid("98245726788"));
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testIsValidIsbn13WithPrefix978() {
+        assertTrue(isbnVerifier.isValidIsbn13("978-0-123456-47-2"));
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testIsValidIsbn13WithPrefix979() {
+        assertTrue(isbnVerifier.isValidIsbn13("979-0759313797"));
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testIsValidIsbn13WithWrongPrefix() {
+        assertFalse(isbnVerifier.isValidIsbn13("179-0759313797"));
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testIsValidIsbn13IsTooShort() {
+        assertFalse(isbnVerifier.isValidIsbn13("979-075931797"));
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testIsValidIsbn13ContainsExtraDigit() {
+        assertFalse(isbnVerifier.isValidIsbn13("978-0-123456-47-21"));
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testIsValidIsbn13ContainsInvalidCharacter() {
+        assertFalse(isbnVerifier.isValidIsbn13("979-0759E13797"));
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testIsValidIsbn13IsInvalid() {
+        assertFalse(isbnVerifier.isValidIsbn13("979-0-759113-79-7"));
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testConvertIsbn10ToIsbn13() {
+        String expected = "9783598215087";
+        assertEquals(expected, isbnVerifier.convertIsbn10ToIsbn13("3-598-21508-8"));
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testConvertIsbn10ToIsbn13ContainsCheckDigit() {
+        String expected = "9783598215070";
+        assertEquals(expected, isbnVerifier.convertIsbn10ToIsbn13("359821507X"));
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testConvertIsbn10ToIsbn13HasInvalidIsbn10Input() {
+        Exception exception = assertThrows(IllegalArgumentException.class,
+                () -> isbnVerifier.convertIsbn10ToIsbn13("159821507X"));
+
+        String expectedMessage = "Not a valid isbn-10 number.";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testConvertIsbn13ToIsbn10() {
+        String expected = "0123456472";
+        assertEquals(expected, isbnVerifier.convertIsbn13ToIsbn10("978-0-123456-47-2"));
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testConvertIsbn13ToIsbn10WithInvalidIsbn13() {
+        Exception exception = assertThrows(IllegalArgumentException.class,
+                () -> isbnVerifier.convertIsbn13ToIsbn10("979-0-759113-79-7"));
+
+        String expectedMessage = "Not a valid ISBN-13 number.";
+        String actualMessage = exception.getMessage();
+
+        assertTrue(actualMessage.contains(expectedMessage));
+    }
+
+    //@Ignore("Remove to run test")
+    @Test
+    public void testConvertIsbn13ToIsbn10WithCheckDigitX() {
+        String expected = "000117115X";
+        assertEquals(expected, isbnVerifier.convertIsbn13ToIsbn10("9780001171152"));
     }
 }
