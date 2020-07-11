@@ -1,8 +1,10 @@
+import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 class ProteinTranslator {
     private static final Map<String, String> CODONS_TO_PROTEIN;
@@ -23,25 +25,14 @@ class ProteinTranslator {
         rnaToProtein.put("UGU", "Cysteine");
         rnaToProtein.put("UGC", "Cysteine");
         rnaToProtein.put("UGG", "Tryptophan");
-        rnaToProtein.put("UAA", "STOP");
-        rnaToProtein.put("UAG", "STOP");
-        rnaToProtein.put("UGA", "STOP");
 
         CODONS_TO_PROTEIN = Collections.unmodifiableMap(rnaToProtein);
     }
 
     List<String> translate(String rnaSequence) {
-        List<String> proteins = new ArrayList<>();
-        String[] codons = rnaSequence.split("(?<=\\G.{3})");
-        for (String codon : codons) {
-            if (CODONS_TO_PROTEIN.containsKey(codon)) {
-                if (CODONS_TO_PROTEIN.get(codon).equals("STOP")) {
-                    break;
-                } else {
-                    proteins.add(CODONS_TO_PROTEIN.get(codon));
-                }
-            }
-        }
-        return proteins;
+        return Arrays.stream(rnaSequence.split("(?<=\\G.{3})"))
+                .map(CODONS_TO_PROTEIN::get)
+                .takeWhile(Objects::nonNull)
+                .collect(Collectors.toUnmodifiableList());
     }
 }
