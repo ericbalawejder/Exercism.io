@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.stream.IntStream;
 
-class RelationshipComputer<T> {
+class RelationshipComputer<T extends Comparable> {
 
     Relationship computeRelationship(final List<T> list1, final List<T> list2) {
         if (list1.equals(list2)) {
