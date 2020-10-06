@@ -30,7 +30,7 @@ class NucleotideCounter {
         counts.putIfAbsent('C', 0);
         counts.putIfAbsent('G', 0);
         counts.putIfAbsent('T', 0);
-        return counts;
+        return Collections.unmodifiableMap(counts);
     }
 
 }
