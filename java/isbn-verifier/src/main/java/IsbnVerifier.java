@@ -10,6 +10,9 @@ public class IsbnVerifier {
     private static final String PREFIX_978 = "978";
     private static final String PREFIX_979 = "979";
 
+    // TODO: Add functionality for list of prefixes
+    //private static final List<String> GS1_PREFIXES = List.of("978", "979");
+
     boolean isValid(String stringToVerify) {
         final String isbn = stringToVerify.replace("-", "");
 
