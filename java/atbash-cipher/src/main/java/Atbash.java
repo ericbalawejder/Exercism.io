@@ -36,13 +36,8 @@ class Atbash {
     }
 
     private Character cipher(Character character) {
-        if(character < 'a' || character > 'z') {
-            return character;
-        } else {
-            int offset = (int) character - 'a';
-            int encodeValue = (int) 'z' - offset;
-            return (char) encodeValue;
-        }
+        return !(character < 'a' || character > 'z') ?
+                (char) ((int) 'z' - ((int) character - 'a')) : character;
     }
 
     private List<String> group(String text, int size) {
