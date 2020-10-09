@@ -36,7 +36,7 @@ class Atbash {
     }
 
     private Character cipher(Character character) {
-        return !(character < 'a' || character > 'z') ?
+        return Character.isAlphabetic(character) ?
                 (char) ((int) 'z' - ((int) character - 'a')) : character;
     }
 
