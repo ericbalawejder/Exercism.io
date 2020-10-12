@@ -1,22 +1,20 @@
-// Convert a number to a string, the contents of which depend on the number's factors.
-class RaindropConverter
-{
-    String convert(int number)
-    {
-        StringBuilder rainDrop = new StringBuilder();
-        
-        if (number % 3 == 0)
-        {
-            rainDrop.append("Pling");
+class RaindropConverter {
+
+    String convert(int number) {
+        StringBuilder rainDrops = new StringBuilder();
+
+        if (number % 3 == 0) {
+            rainDrops.append("Pling");
         }
-        if (number % 5 == 0)
-        {
-            rainDrop.append("Plang");
+        if (number % 5 == 0) {
+            rainDrops.append("Plang");
         }
-        if (number % 7 == 0)
-        {
-            rainDrop.append("Plong");
+        if (number % 7 == 0) {
+            rainDrops.append("Plong");
         }
-        return rainDrop.toString().length() == 0 ? Integer.toString(number) : rainDrop.toString();
+        if (rainDrops.length() == 0) {
+            rainDrops.append(number);
+        }
+        return rainDrops.toString();
     }
 }
