@@ -16,7 +16,6 @@ class NucleotideCounter {
     }
 
     Map<Character, Integer> nucleotideCounts() {
-        
         Map<Character, Integer> counts = IntStream.range(0, strand.length())
                 .mapToObj(i -> strand.charAt(i))
                 .collect(Collectors.groupingBy(Function.identity(),
