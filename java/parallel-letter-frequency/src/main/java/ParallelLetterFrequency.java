@@ -13,8 +13,7 @@ class ParallelLetterFrequency {
     Map<Integer, Integer> letterCounts() {
         return filter(text).chars()
                 .parallel()
-                .mapToObj(c -> (char) c)
-                .map(Integer::valueOf)
+                .boxed()
                 .collect(Collectors.collectingAndThen(
                         Collectors.toMap(key -> key, value -> 1, Integer::sum),
                         Collections::unmodifiableMap));
