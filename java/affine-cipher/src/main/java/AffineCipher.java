@@ -1,3 +1,4 @@
+import java.math.BigInteger;
 import java.util.List;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -6,6 +7,7 @@ import java.util.stream.IntStream;
 class AffineCipher {
 
     private static final int ALPHABET = 26;
+    private static final int ASCII_VALUE = 'a';
 
     String encode(String text, int keyA, int keyB) {
         modularMultiplicativeInverse(keyA, ALPHABET);
@@ -40,36 +42,32 @@ class AffineCipher {
     }
 
     private Character encrypt(Character character, int keyA, int keyB) {
-        final int index = character - 'a';
-        final int encryptedNumericValue = (keyA * index + keyB) % ALPHABET;
+        final int index = character - ASCII_VALUE;
+        final int encryptedNumericValue = Math.floorMod((keyA * index + keyB), ALPHABET);
         return Character.isAlphabetic(character) ?
-                (char) ('a' + encryptedNumericValue) : character;
+                (char) (ASCII_VALUE + encryptedNumericValue) : character;
     }
 
     private Character decrypt(Character character, int keyA, int keyB) {
-        final int index = character - 'a';
+        final int index = character - ASCII_VALUE;
         final int inverse = modularMultiplicativeInverse(keyA, ALPHABET);
         return Character.isAlphabetic(character) ?
-                (char) (Math.floorMod(inverse * (index - keyB), ALPHABET) + 'a') : character;
+                (char) (Math.floorMod(inverse * (index - keyB), ALPHABET) + ASCII_VALUE) : character;
     }
 
     private int modularMultiplicativeInverse(int n, int modulus) {
-        if (gcd(n, modulus) != 1) {
+        try {
+            BigInteger a = new BigInteger(String.valueOf(n));
+            BigInteger m = new BigInteger(String.valueOf(modulus));
+            return a.modInverse(m).intValue();
+        } catch (Exception e) {
             throw new IllegalArgumentException("Error: keyA and alphabet size must be coprime.");
         }
-        return IntStream.range(1, modulus)
-                .filter(i -> Math.floorMod(n * i, modulus) == 1)
-                .findFirst()
-                .getAsInt();
     }
 
     private List<String> group(String text, int size) {
         return IntStream.iterate(0, n -> n < text.length(), n -> n + size)
                 .mapToObj(n -> text.substring(n, Math.min(text.length(), n + size)))
                 .collect(Collectors.toUnmodifiableList());
-    }
-
-    private int gcd(int a, int b) {
-        return b == 0 ? a : gcd(b, a % b);
     }
 }
