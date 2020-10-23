@@ -43,16 +43,17 @@ class AffineCipher {
 
     private Character encrypt(Character character, int keyA, int keyB) {
         final int index = character - ASCII_VALUE;
-        final int encryptedNumericValue = Math.floorMod((keyA * index + keyB), ALPHABET);
+        final int encryptionFunction = Math.floorMod((keyA * index + keyB), ALPHABET);
         return Character.isAlphabetic(character) ?
-                (char) (ASCII_VALUE + encryptedNumericValue) : character;
+                (char) (encryptionFunction + ASCII_VALUE) : character;
     }
 
     private Character decrypt(Character character, int keyA, int keyB) {
-        final int index = character - ASCII_VALUE;
         final int inverse = modularMultiplicativeInverse(keyA, ALPHABET);
+        final int index = character - ASCII_VALUE;
+        final int decryptionFunction = Math.floorMod(inverse * (index - keyB), ALPHABET);
         return Character.isAlphabetic(character) ?
-                (char) (Math.floorMod(inverse * (index - keyB), ALPHABET) + ASCII_VALUE) : character;
+                (char) (decryptionFunction + ASCII_VALUE) : character;
     }
 
     private int modularMultiplicativeInverse(int n, int modulus) {
