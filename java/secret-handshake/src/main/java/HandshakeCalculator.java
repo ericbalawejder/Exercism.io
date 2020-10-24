@@ -1,27 +1,31 @@
-import java.util.List;
-import java.util.ArrayList;
+import java.util.AbstractList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 class HandshakeCalculator {
 
     List<Signal> calculateHandshake(int number) {
-        List<Signal> secretHandshake = new ArrayList<>();
-        // Using bitwise comparison: 4 & 7 == 4. 00000100 & 00000111 == 00000100
-        if ((number & 1) > 0) {
-            secretHandshake.add(Signal.WINK);
-        }
-        if ((number & 2) > 0) {
-            secretHandshake.add(Signal.DOUBLE_BLINK);
-        }
-        if ((number & 4) > 0) {
-            secretHandshake.add(Signal.CLOSE_YOUR_EYES);
-        }
-        if ((number & 8) > 0) {
-            secretHandshake.add(Signal.JUMP);
-        }
-        if ((number & 16) > 0) {
-            Collections.reverse(secretHandshake);
-        }
-        return secretHandshake;
+        final List<Signal> secretHandshake = Arrays.stream(Signal.values())
+                .filter(signal -> (number & (int) Math.pow(2, signal.ordinal())) > 0)
+                .collect(Collectors.toUnmodifiableList());
+
+        return number > (int) Math.pow(2, Signal.values().length) ?
+                Collections.unmodifiableList(reverse(secretHandshake)) : secretHandshake;
     }
+
+    private List<Signal> reverse(List<Signal> list) {
+        return new AbstractList<>() {
+            @Override
+            public Signal get(int index) {
+                return list.get(list.size() - 1 - index);
+            }
+            @Override
+            public int size() {
+                return list.size();
+            }
+        };
+    }
+
 }
