@@ -15,6 +15,7 @@ class HandshakeCalculator {
                 Collections.unmodifiableList(reverse(secretHandshake)) : secretHandshake;
     }
 
+    // https://medium.com/javarevisited/interview-question-reversing-an-immutable-list-in-java-57a891a521c5
     private List<Signal> reverse(List<Signal> list) {
         return new AbstractList<>() {
             @Override
