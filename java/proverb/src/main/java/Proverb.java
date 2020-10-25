@@ -1,28 +1,20 @@
-// Proverb
-class Proverb
-{
+class Proverb {
     private final String[] words;
 
-    Proverb(String[] words)
-    {
+    Proverb(String[] words) {
         this.words = words;
     }
 
-    String recite()
-    {
+    String recite() {
         StringBuilder proverb = new StringBuilder();
 
-        for (int i = words.length - 1; i >= 0; i--)
-        {
-            if (i == 0)
-            {
-                String endLine = "And all for the want of a " + words[i] + ".";
-                proverb.append(endLine);
-                break;
+        if (words.length > 0) {
+            for (int i = 0; i < words.length - 1; i++) {
+                proverb.append("For want of a " + words[i] + " the " + words[i + 1] + " was lost.\n");
             }
-            String line = "For want of a " + words[i - 1] + " the " + words[i] + " was lost.\n";
-            proverb.insert(0, line);
+            proverb.append("And all for the want of a " + words[0] + ".");
         }
         return proverb.toString();
     }
+
 }
