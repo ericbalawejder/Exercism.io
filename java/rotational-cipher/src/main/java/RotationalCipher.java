@@ -1,8 +1,9 @@
-import java.util.stream.Collectors;
+import java.util.stream.Collector;
 
 class RotationalCipher {
 
     private final int shiftKey;
+    private static final int ALPHABET = 26;
 
     RotationalCipher(int shiftKey) {
         this.shiftKey = shiftKey;
@@ -10,17 +11,19 @@ class RotationalCipher {
 
     String rotate(String data) {
         return data.chars()
-                .mapToObj(this::rotateCharacter)
-                .collect(Collectors.joining());
+                .mapToObj(c -> (char) c)
+                .map(this::rotateCharacter)
+                .collect(Collector.of(
+                        StringBuilder::new,
+                        StringBuilder::append,
+                        StringBuilder::append,
+                        StringBuilder::toString));
     }
 
-    private String rotateCharacter(int character) {
-        if (!Character.isAlphabetic((int) character)) {
-            return Character.toString(character);
-        } else {
-            int letterCase = Character.isUpperCase(character) ? 'A' : 'a';
-            return Character.toString((((int) character + shiftKey - letterCase) % 26 + letterCase));
-        }
+    private Character rotateCharacter(Character character) {
+        final int letterCase = Character.isUpperCase(character) ? 'A' : 'a';
+        final int rotation = (character + shiftKey - letterCase) % ALPHABET + letterCase;
+        return Character.isAlphabetic(character) ? (char) (rotation) : character;
     }
 
 }
