@@ -9,49 +9,46 @@ class Robot {
     }
 
     void turnRight() {
-        Orientation direction = getOrientation();
-        int currentIndex = direction.ordinal();
-        int index = Math.floorMod(currentIndex + 1, Orientation.values().length);
-        setOrientation(Orientation.values()[index]);
+        final int currentIndex = getOrientation().ordinal();
+        final int newIndex = Math.floorMod(currentIndex + 1, Orientation.values().length);
+        setOrientation(Orientation.values()[newIndex]);
     }
 
     void turnLeft() {
-        Orientation direction = getOrientation();
-        int currentIndex = direction.ordinal();
-        int index = Math.floorMod(currentIndex - 1, Orientation.values().length);
-        setOrientation(Orientation.values()[index]);
+        final int currentIndex = getOrientation().ordinal();
+        final int newIndex = Math.floorMod(currentIndex - 1, Orientation.values().length);
+        setOrientation(Orientation.values()[newIndex]);
     }
 
     void advance() {
-        Orientation direction = getOrientation();
-        if (direction.equals(Orientation.NORTH)) {
-            gridPosition.setY(gridPosition.getY() + 1);
-        } else if (direction.equals(Orientation.EAST)) {
-            gridPosition.setX(gridPosition.getX() + 1);
-        } else if (direction.equals(Orientation.SOUTH)) {
-            gridPosition.setY(gridPosition.getY() - 1);
-        } else {
-            gridPosition.setX(gridPosition.getX() - 1);
+        switch (getOrientation()) {
+            case NORTH:
+                setGridPosition(new GridPosition(gridPosition.getX(), gridPosition.getY() + 1));
+                break;
+            case EAST:
+                setGridPosition(new GridPosition(gridPosition.getX() + 1, gridPosition.getY()));
+                break;
+            case SOUTH:
+                setGridPosition(new GridPosition(gridPosition.getX(), gridPosition.getY() - 1));
+                break;
+            case WEST:
+                setGridPosition(new GridPosition(gridPosition.getX() - 1, gridPosition.getY()));
+                break;
         }
     }
 
     void simulate(String instructions) {
-        char[] symbols = instructions.toCharArray();
-        for (char symbol : symbols) {
-            if (symbol == 'L') {
-                turnLeft();
-            } else if (symbol == 'R') {
-                turnRight();
-            } else if (symbol == 'A'){
-                advance();
-            } else {
-                throw new IllegalArgumentException("Bad instruction format");
-            }
-        }
+        instructions.chars()
+                .mapToObj(c -> (char) c)
+                .forEach(this::parseSymbols);
     }
 
     GridPosition getGridPosition() {
         return this.gridPosition;
+    }
+
+    void setGridPosition(GridPosition gridPosition) {
+        this.gridPosition = gridPosition;
     }
 
     Orientation getOrientation() {
@@ -62,11 +59,19 @@ class Robot {
         this.orientation = orientation;
     }
 
-    @Override
-    public String toString() {
-        return "Robot{" +
-                "gridPosition=" + gridPosition +
-                ", orientation=" + orientation +
-                '}';
+    private void parseSymbols(char character) {
+        switch (character) {
+            case 'R':
+                turnRight();
+                break;
+            case 'L':
+                turnLeft();
+                break;
+            case 'A':
+                advance();
+                break;
+            default:
+                throw new IllegalArgumentException("Bad instruction format");
+        }
     }
 }
