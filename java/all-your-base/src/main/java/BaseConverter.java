@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -21,7 +20,7 @@ class BaseConverter {
     int[] convertToBase(int base) {
         basesMustBeAtLeastTwo(base);
         final int base10 = convertRadixToBaseTen(getRepresentation(), getBase());
-        return convertListToArray(convertBaseTenToRadix(base10, base));
+        return convertBaseTenToRadix(base10, base);
     }
 
     int getBase() {
@@ -39,9 +38,9 @@ class BaseConverter {
                 .sum();
     }
 
-    private List<Integer> convertBaseTenToRadix(int number, int radix) {
+    private int[] convertBaseTenToRadix(int number, int radix) {
         if (number == 0) {
-            return new ArrayList<>(Collections.singleton(0));
+            return new int[]{0};
         }
 
         return IntStream.iterate(number, i -> i > 0, i -> i / radix)
@@ -52,12 +51,7 @@ class BaseConverter {
                             Collections.reverse(list);
                             return list.stream();
                         }
-                )).collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    private int[] convertListToArray(List<Integer> list) {
-        return list.stream()
-                .mapToInt(Integer::intValue)
+                )).mapToInt(Integer::intValue)
                 .toArray();
     }
 
