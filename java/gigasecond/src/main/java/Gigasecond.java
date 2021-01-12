@@ -3,7 +3,7 @@ import java.time.LocalDateTime;
 
 class Gigasecond {
     private final LocalDateTime now;
-    private final long GIGASECOND = 1_000_000_000L;
+    private static final long GIGASECOND = 1_000_000_000L;
 
     Gigasecond(LocalDate birthDate) {
         this.now = birthDate.atStartOfDay();
@@ -16,4 +16,5 @@ class Gigasecond {
     LocalDateTime getDateTime() {
         return now.plusSeconds(GIGASECOND);
     }
+    
 }
