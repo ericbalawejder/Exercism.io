@@ -10,8 +10,11 @@ class PrimeCalculator {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
-    boolean isPrime(int number) {
-        return number > 1 && IntStream.rangeClosed(2, (int) Math.sqrt(number))
+    private boolean isPrime(int number) {
+        if (number <= 1) throw new IllegalArgumentException("Number must be > 1");
+        if (number == 2 || number == 3) return true;
+        if (number % 2 == 0) return false;
+        return IntStream.iterate(3, i -> i <= (int) Math.sqrt(number), i -> i + 2)
                 .noneMatch(n -> number % n == 0);
     }
 
