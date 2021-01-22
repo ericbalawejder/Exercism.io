@@ -28,7 +28,7 @@ class BaseConverter {
     }
 
     int[] getRepresentation() {
-        return representation;
+        return Arrays.copyOf(this.representation, representation.length);
     }
 
     private int convertRadixToBaseTen(int[] representation, int base) {
