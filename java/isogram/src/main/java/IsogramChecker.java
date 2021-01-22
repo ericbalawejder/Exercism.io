@@ -1,4 +1,3 @@
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -6,16 +5,14 @@ import java.util.stream.Collectors;
 class IsogramChecker {
 
     boolean isIsogram(String input) {
-        String phrase = input.trim()
+        final String phrase = input.trim()
                 .toLowerCase()
                 .replaceAll("[^a-z]", "");
 
         return phrase.chars()
                 .boxed()
-                .collect(Collectors.collectingAndThen(
-                        Collectors.toSet(), Collections::unmodifiableSet))
+                .collect(Collectors.toUnmodifiableSet())
                 .size() == phrase.length();
-
     }
 
     boolean isIsogramImperative(String input) {
