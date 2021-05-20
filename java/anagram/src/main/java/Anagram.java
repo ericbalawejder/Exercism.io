@@ -1,6 +1,4 @@
 import java.math.BigInteger;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -10,36 +8,35 @@ class Anagram {
     private final String word;
     private final BigInteger uniqueProductOfPrimes;
     private final static Map<Character, Integer> PRIMES;
-    
+
     static {
-        Map<Character, Integer> charactersToPrimeNumber = new HashMap<>();
-        charactersToPrimeNumber.put('a', 2);
-        charactersToPrimeNumber.put('b', 3);
-        charactersToPrimeNumber.put('c', 5);
-        charactersToPrimeNumber.put('d', 7);
-        charactersToPrimeNumber.put('e', 11);
-        charactersToPrimeNumber.put('f', 13);
-        charactersToPrimeNumber.put('g', 17);
-        charactersToPrimeNumber.put('h', 19);
-        charactersToPrimeNumber.put('i', 23);
-        charactersToPrimeNumber.put('j', 29);
-        charactersToPrimeNumber.put('k', 31);
-        charactersToPrimeNumber.put('l', 37);
-        charactersToPrimeNumber.put('m', 41);
-        charactersToPrimeNumber.put('n', 43);
-        charactersToPrimeNumber.put('o', 47);
-        charactersToPrimeNumber.put('p', 53);
-        charactersToPrimeNumber.put('q', 59);
-        charactersToPrimeNumber.put('r', 61);
-        charactersToPrimeNumber.put('s', 67);
-        charactersToPrimeNumber.put('t', 71);
-        charactersToPrimeNumber.put('u', 73);
-        charactersToPrimeNumber.put('v', 79);
-        charactersToPrimeNumber.put('w', 83);
-        charactersToPrimeNumber.put('x', 89);
-        charactersToPrimeNumber.put('y', 97);
-        charactersToPrimeNumber.put('z', 101);
-        PRIMES = Collections.unmodifiableMap(charactersToPrimeNumber);
+        PRIMES = Map.ofEntries( Map.entry('a', 2),
+                                Map.entry('b', 3),
+                                Map.entry('c', 5),
+                                Map.entry('d', 7),
+                                Map.entry('e', 11),
+                                Map.entry('f', 13),
+                                Map.entry('g', 17),
+                                Map.entry('h', 19),
+                                Map.entry('i', 23),
+                                Map.entry('j', 29),
+                                Map.entry('k', 31),
+                                Map.entry('l', 37),
+                                Map.entry('m', 41),
+                                Map.entry('n', 43),
+                                Map.entry('o', 47),
+                                Map.entry('p', 53),
+                                Map.entry('q', 59),
+                                Map.entry('r', 61),
+                                Map.entry('s', 67),
+                                Map.entry('t', 71),
+                                Map.entry('u', 73),
+                                Map.entry('v', 79),
+                                Map.entry('w', 83),
+                                Map.entry('x', 89),
+                                Map.entry('y', 97),
+                                Map.entry('z', 101)
+        );
     }
 
     Anagram(String word) {
@@ -62,10 +59,9 @@ class Anagram {
     }
 
     private boolean isAnagram(String word) {
-        if (getWord().length() != word.length() || isSameWord(getWord(), word)) {
-            return false;
-        }
-        return getUniqueProductOfPrimes().equals(computeProduct(word));
+        return getWord().length() == word.length() &&
+                !isSameWord(getWord(), word) &&
+                getUniqueProductOfPrimes().equals(computeProduct(word));
     }
 
     private BigInteger computeProduct(String word) {
@@ -74,11 +70,11 @@ class Anagram {
                 .map(Character::toLowerCase)
                 .map(PRIMES::get)
                 .map(BigInteger::valueOf)
-                .reduce(BigInteger.ONE, (p1, p2) -> p1.multiply(p2));
+                .reduce(BigInteger.ONE, BigInteger::multiply);
     }
 
     private boolean isSameWord(String word1, String word2) {
-        return word1.toLowerCase().equals(word2.toLowerCase());
+        return word1.equalsIgnoreCase(word2);
     }
 
 }
