@@ -17,11 +17,11 @@ class NucleotideCounter {
 
     Map<Character, Integer> nucleotideCounts() {
         Map<Character, Integer> counts = IntStream.range(0, strand.length())
-                .mapToObj(i -> strand.charAt(i))
+                .mapToObj(strand::charAt)
                 .collect(Collectors.groupingBy(Function.identity(),
                         Collectors.reducing(0, value -> 1, Integer::sum)));
 
-        return Collections.unmodifiableMap(defaultMap(counts));
+        return defaultMap(counts);
     }
 
     private Map<Character, Integer> defaultMap(Map<Character, Integer> counts) {
