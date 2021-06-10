@@ -1,38 +1,44 @@
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 class ProteinTranslator {
+
+    public static void main(String[] args) {
+        ProteinTranslator proteinTranslator = new ProteinTranslator();
+        final String codons = "UGGUGUUAUUAAUGGUUU";
+        final String[] array = codons.split("(?<=\\G.{3})");
+        System.out.println(Arrays.toString(array));
+    }
+
     private static final Map<String, String> CODONS_TO_PROTEIN;
 
     static {
-        Map<String, String> rnaToProtein = new HashMap<>();
-        rnaToProtein.put("AUG", "Methionine");
-        rnaToProtein.put("UUU", "Phenylalanine");
-        rnaToProtein.put("UUC", "Phenylalanine");
-        rnaToProtein.put("UUA", "Leucine");
-        rnaToProtein.put("UUG", "Leucine");
-        rnaToProtein.put("UCU", "Serine");
-        rnaToProtein.put("UCC", "Serine");
-        rnaToProtein.put("UCA", "Serine");
-        rnaToProtein.put("UCG", "Serine");
-        rnaToProtein.put("UAU", "Tyrosine");
-        rnaToProtein.put("UAC", "Tyrosine");
-        rnaToProtein.put("UGU", "Cysteine");
-        rnaToProtein.put("UGC", "Cysteine");
-        rnaToProtein.put("UGG", "Tryptophan");
-
-        CODONS_TO_PROTEIN = Collections.unmodifiableMap(rnaToProtein);
+        CODONS_TO_PROTEIN = Map.ofEntries(
+                Map.entry("AUG", "Methionine"),
+                Map.entry("UUU", "Phenylalanine"),
+                Map.entry("UUC", "Phenylalanine"),
+                Map.entry("UUA", "Leucine"),
+                Map.entry("UUG", "Leucine"),
+                Map.entry("UCU", "Serine"),
+                Map.entry("UCC", "Serine"),
+                Map.entry("UCA", "Serine"),
+                Map.entry("UCG", "Serine"),
+                Map.entry("UAU", "Tyrosine"),
+                Map.entry("UAC", "Tyrosine"),
+                Map.entry("UGU", "Cysteine"),
+                Map.entry("UGC", "Cysteine"),
+                Map.entry("UGG", "Tryptophan")
+        );
     }
 
     List<String> translate(String rnaSequence) {
-        return Arrays.stream(rnaSequence.split("(?<=\\G.{3})"))
+        return Arrays.stream(rnaSequence.split("(?<=\\G{3})"))
                 .map(CODONS_TO_PROTEIN::get)
                 .takeWhile(Objects::nonNull)
                 .collect(Collectors.toUnmodifiableList());
     }
+
 }
