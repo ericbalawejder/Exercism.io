@@ -5,14 +5,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 class ProteinTranslator {
-
-    public static void main(String[] args) {
-        ProteinTranslator proteinTranslator = new ProteinTranslator();
-        final String codons = "UGGUGUUAUUAAUGGUUU";
-        final String[] array = codons.split("(?<=\\G.{3})");
-        System.out.println(Arrays.toString(array));
-    }
-
     private static final Map<String, String> CODONS_TO_PROTEIN;
 
     static {
@@ -35,7 +27,7 @@ class ProteinTranslator {
     }
 
     List<String> translate(String rnaSequence) {
-        return Arrays.stream(rnaSequence.split("(?<=\\G{3})"))
+        return Arrays.stream(rnaSequence.split("(?<=\\G.{3})"))
                 .map(CODONS_TO_PROTEIN::get)
                 .takeWhile(Objects::nonNull)
                 .collect(Collectors.toUnmodifiableList());
