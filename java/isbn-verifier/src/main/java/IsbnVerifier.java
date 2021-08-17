@@ -43,11 +43,11 @@ public class IsbnVerifier {
         final List<Integer> numbers = isbn13.chars()
                 .mapToObj(c -> (char) c)
                 .map(String::valueOf)
-                .map(s -> Integer.parseInt(s))
+                .map(Integer::parseInt)
                 .collect(Collectors.toUnmodifiableList());
 
         return IntStream.range(0, numbers.size())
-                .map(i -> (i % 2 == 0) ? numbers.get(i) * 1 : numbers.get(i) * 3)
+                .map(i -> (i % 2 == 0) ? numbers.get(i) : numbers.get(i) * 3)
                 .reduce(0, Integer::sum) % 10 == 0;
     }
 
@@ -61,11 +61,11 @@ public class IsbnVerifier {
         final List<Integer> numbers = isbn13.chars()
                 .mapToObj(c -> (char) c)
                 .map(String::valueOf)
-                .map(s -> Integer.parseInt(s))
+                .map(Integer::parseInt)
                 .collect(Collectors.toUnmodifiableList());
 
         final int sum = IntStream.range(0, numbers.size())
-                .map(i -> (i % 2 == 0) ? numbers.get(i) * 1 : numbers.get(i) * 3)
+                .map(i -> (i % 2 == 0) ? numbers.get(i) : numbers.get(i) * 3)
                 .reduce(0, Integer::sum);
 
         final int checkDigit = sum % 10 == 0 ? 0 : 10 - sum % 10;
@@ -83,7 +83,7 @@ public class IsbnVerifier {
         final List<Integer> numbers = isbn10.chars()
                 .mapToObj(c -> (char) c)
                 .map(String::valueOf)
-                .map(s -> Integer.parseInt(s))
+                .map(Integer::parseInt)
                 .collect(Collectors.toUnmodifiableList());
 
         final int checkDigit = IntStream.range(0, isbn10.length())

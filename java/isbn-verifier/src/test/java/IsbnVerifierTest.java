@@ -116,6 +116,13 @@ public class IsbnVerifierTest {
         assertFalse(isbnVerifier.isValid("98245726788"));
     }
 
+    @Test
+    public void validIsbnNumberSurroundedWithLettersIsInvalid() {
+        assertFalse(isbnVerifier.isValid("ABCDEFG3-598-21507-XQWERTYUI"));
+    }
+
+    // Added tests
+    //-------------------------------------------------------------------
     //@Ignore("Remove to run test")
     @Test
     public void testIsValidIsbn13WithPrefix978() {
