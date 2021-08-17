@@ -11,7 +11,7 @@ class HandshakeCalculator {
                 .filter(signal -> (number & (int) Math.pow(2, signal.ordinal())) > 0)
                 .collect(Collectors.toUnmodifiableList());
 
-        return number > (int) Math.pow(2, Signal.values().length) ?
+        return (number & (int) Math.pow(2, Signal.values().length)) > 0 ?
                 Collections.unmodifiableList(reverse(secretHandshake)) : secretHandshake;
     }
 
