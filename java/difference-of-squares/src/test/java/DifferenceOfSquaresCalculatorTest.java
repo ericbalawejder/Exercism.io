@@ -84,4 +84,12 @@ public class DifferenceOfSquaresCalculatorTest {
         assertEquals(expected, actual);
     }
 
+    //@Ignore("Remove to run test")
+    @Test
+    public void testMaxInputForInteger() {
+        int expected = 357_389_824;
+        int actual = calculator.computeSumOfSquaresTo(1023);
+        assertEquals(expected, actual);
+    }
+
 }
