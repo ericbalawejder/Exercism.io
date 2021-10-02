@@ -1,14 +1,15 @@
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
-public class CustomSet<T> {
+public class CustomSet<T extends Comparable<? super T>> {
 
     private final Map<Integer, T> elements;
 
-    CustomSet(List<T> elements) {
+    CustomSet(List<? extends T> elements) {
         this.elements = elements.stream()
                 .distinct()
                 .collect(Collectors.toMap(Object::hashCode, Function.identity()));
@@ -28,50 +29,49 @@ public class CustomSet<T> {
         return elements.containsKey(element.hashCode());
     }
 
-    boolean isSubset(CustomSet<T> other) {
-        for (Map.Entry<Integer, T> entry : other.elements.entrySet()) {
-            if (!contains(entry.getValue()))
-                return false;
-        }
-        return true;
+    boolean isSubset(CustomSet<T> otherCustomSet) {
+        return elements.values().containsAll(otherCustomSet.elements.values());
     }
 
-    boolean isDisjoint(CustomSet<T> other) {
-        for (Map.Entry<Integer, T> entry : other.elements.entrySet()) {
-            if (contains(entry.getValue()))
-                return false;
-        }
-        return true;
+    boolean isDisjoint(CustomSet<T> otherCustomSet) {
+        return otherCustomSet.elements.values()
+                .stream()
+                .noneMatch(elements.values()::contains);
     }
 
-    CustomSet<T> getIntersection(CustomSet<T> other) {
+    CustomSet<T> getIntersection(CustomSet<T> otherCustomSet) {
         return new CustomSet<>(elements
                 .values()
                 .stream()
-                .filter(other::contains)
+                .filter(otherCustomSet::contains)
                 .collect(Collectors.toUnmodifiableList()));
     }
 
-    CustomSet<T> getDifference(CustomSet<T> other) {
+    CustomSet<T> getDifference(CustomSet<T> otherCustomSet) {
         return new CustomSet<>(elements
                 .values()
                 .stream()
-                .filter(e -> !other.contains(e))
+                .filter(e -> !otherCustomSet.contains(e))
                 .collect(Collectors.toUnmodifiableList()));
     }
 
-    CustomSet<T> getUnion(CustomSet<T> other) {
-        final List<T> values = new ArrayList<>(elements.values());
-        values.addAll(other.elements.values());
-        return new CustomSet<>(values);
+    CustomSet<T> getUnion(CustomSet<T> otherCustomSet) {
+        return new CustomSet<>(
+                Stream.concat(elements.values().stream(), otherCustomSet.elements.values().stream())
+                        .collect(Collectors.toUnmodifiableList()));
     }
 
     @Override
-    public boolean equals(Object other) {
-        if (other instanceof CustomSet<?>) {
-            return ((CustomSet<?>) other).elements.keySet().equals(elements.keySet());
+    public boolean equals(Object otherCustomSet) {
+        if (otherCustomSet instanceof CustomSet<?>) {
+            return ((CustomSet<?>) otherCustomSet).elements.keySet().equals(elements.keySet());
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(elements);
     }
 
     @Override
