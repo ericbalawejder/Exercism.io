@@ -1,19 +1,16 @@
-import java.util.Set;
-import java.util.HashSet;
+import java.util.stream.Collectors;
 
 public class PangramChecker {
 
-    public static boolean isPangram(String input) {
-        Set<Integer> set = new HashSet<>();
+    private static final int ALPHABET_LENGTH = 26;
 
-        input.toLowerCase().chars()
+    boolean isPangram(String sentence) {
+        return sentence.toLowerCase()
+                .chars()
                 .filter(Character::isAlphabetic)
-                .forEach(character -> {
-                    if (!set.contains(character)) {
-                        set.add(character);
-                    }
-                });
-        return set.size() == 26;
+                .boxed()
+                .collect(Collectors.toUnmodifiableSet())
+                .size() == ALPHABET_LENGTH;
     }
 
 }
