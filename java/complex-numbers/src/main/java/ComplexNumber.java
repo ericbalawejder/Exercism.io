@@ -33,16 +33,7 @@ class ComplexNumber {
     }
 
     public ComplexNumber div(ComplexNumber complexNumber) {
-        final double ac = this.real * complexNumber.getReal();
-        final double bd = this.imaginary * complexNumber.getImag();
-        final double ad = this.real * complexNumber.getImag();
-        final double bc = this.imaginary * complexNumber.getReal();
-        final double sumDivisorSqd = Math.pow(complexNumber.getReal(), 2) +
-                Math.pow(complexNumber.getImag(), 2);
-        final double real = (ac + bd) / sumDivisorSqd;
-        final double imaginary = (bc - ad) / sumDivisorSqd;
-
-        return new ComplexNumber(real, imaginary);
+        return this.times(complexNumber.reciprocal());
     }
 
     public double abs() {
@@ -54,10 +45,9 @@ class ComplexNumber {
     }
 
     public ComplexNumber exponentialOf() {
-        final double real = Math.pow(Math.E, this.real);
-        final double cosB = Math.cos(this.imaginary);
-        final double sinB = Math.sin(this.imaginary);
-        return new ComplexNumber(real * cosB, real * sinB);
+        final double expA = Math.exp(this.real);
+        final ComplexNumber polar = new ComplexNumber(Math.cos(this.imaginary), Math.sin(this.imaginary));
+        return new ComplexNumber(expA, 0).times(polar);
     }
 
     public double getReal() {
@@ -85,6 +75,11 @@ class ComplexNumber {
     public String toString() {
         final String sign = imaginary >= 0 ? "+" : "-";
         return real + " " + sign + " " + Math.abs(imaginary) + "i";
+    }
+
+    private ComplexNumber reciprocal() {
+        final double sumDivisorSqd = Math.pow(this.getReal(), 2) + Math.pow(this.getImag(), 2);
+        return new ComplexNumber(this.real / sumDivisorSqd, -this.imaginary / sumDivisorSqd);
     }
 
 }
