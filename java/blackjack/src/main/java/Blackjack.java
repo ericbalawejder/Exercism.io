@@ -33,7 +33,7 @@ class Blackjack {
     }
 
     String largeHand(boolean isBlackjack, int dealerScore) {
-        if (isBlackjack && (dealerScore != 10 && dealerScore != 11)) {
+        if (isBlackjack && !(dealerScore == 10 || dealerScore == 11)) {
             return WIN;
         } else if (isBlackjack) {
             return STAND;
@@ -45,9 +45,7 @@ class Blackjack {
     String smallHand(int handScore, int dealerScore) {
         if (handScore >= 12 && handScore <= 16 && dealerScore >= 7) {
             return HIT;
-        } else if (handScore >= 12 && handScore <= 16) {
-            return STAND;
-        } else if (handScore >= 17) {
+        } else if (handScore >= 12) {
             return STAND;
         } else {
             return HIT;
