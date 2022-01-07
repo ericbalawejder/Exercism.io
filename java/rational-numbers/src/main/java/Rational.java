@@ -44,8 +44,23 @@ class Rational {
         return new Rational(numerator, denominator);
     }
 
+    /**
+     * https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Math.html#pow(double,double)
+     * If the first argument is finite and less than zero:
+     * if the second argument is finite and not an integer, then the result is NaN.
+     * <p>
+     * A floating-point value is considered to be an integer if and only if it is finite and a fixed point
+     * of the method ceil or, equivalently, a fixed point of the method floor. A value is a fixed point of
+     * a one-argument method if and only if the result of applying the method to the value is equal to the
+     * value.)
+     */
     double exp(double base) {
-        if (base < 0) throw new ArithmeticException("does not handle complex roots");
+        if (base < 0 && this.denominator % 2 == 0) {
+            throw new ArithmeticException("does not handle complex roots");
+        }
+        if (base < 0 && !isInteger(this.numerator, this.denominator)) {
+            throw new ArithmeticException("does not handle rational roots of negative numbers");
+        }
         final double power = Math.pow(base, Math.abs(this.numerator));
         final double root = Math.round(Math.pow(power, 1.0 / this.denominator));
         return this.numerator < 0 ? 1 / root : root;
@@ -82,6 +97,11 @@ class Rational {
         result = prime * result + this.getDenominator();
 
         return result;
+    }
+
+    private boolean isInteger(int numerator, int denominator) {
+        if (Math.abs(numerator) < denominator) return false;
+        return Math.floorMod(numerator, denominator) == 0;
     }
 
     private Triplet<Integer, Integer, Integer> createCommonDenominator(Rational rational) {
