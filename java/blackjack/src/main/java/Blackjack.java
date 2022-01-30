@@ -1,19 +1,30 @@
-package game;
+import java.util.Map;
 
-import card.Rank;
-import deck.Deck;
-
-public class Blackjack {
+class Blackjack {
 
     private static final String WIN = "W";
     private static final String STAND = "S";
     private static final String SPLIT = "P";
     private static final String HIT = "H";
     private static final int BLACKJACK = 21;
-    private static final Deck deck = new Deck();
+    private static final Map<String, Integer> CARDS_BY_SCORE = Map.ofEntries(
+            Map.entry("ace", 11),
+            Map.entry("king", 10),
+            Map.entry("queen", 10),
+            Map.entry("jack", 10),
+            Map.entry("ten", 10),
+            Map.entry("nine", 9),
+            Map.entry("eight", 8),
+            Map.entry("seven", 7),
+            Map.entry("six", 6),
+            Map.entry("five", 5),
+            Map.entry("four", 4),
+            Map.entry("three", 3),
+            Map.entry("two", 2)
+    );
 
     int parseCard(String card) {
-        return deck.getValue(new Rank(card)).value();
+        return CARDS_BY_SCORE.getOrDefault(card, 0);
     }
 
     boolean isBlackjack(String card1, String card2) {
